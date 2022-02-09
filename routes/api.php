@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\PasswordResetController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\User\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('auth')->group(function (){
+
     Route::post('login', [AuthController::class, 'login']);
+
     Route::post('logout', [AuthController::class, 'logout']);
+
     Route::post('refresh', [AuthController::class, 'refresh']);
+
     Route::get('user', [AuthController::class, 'user']);
+
     Route::post('change/password', [PasswordResetController::class, 'changeUserPassword']);
+
     Route::post('send/password-reset/request', [PasswordResetController::class, 'sendResetMail']);
+
     Route::post('reset/password', [PasswordResetController::class, 'reset']);
 });
