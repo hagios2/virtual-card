@@ -17,18 +17,13 @@ class UserAccountController extends Controller
         $this->middleware('auth:api')->only('updateAccount');
     }
 
-    public function createAdmin(UserRegistrationRequest $request): JsonResponse
+    public function registerUser(UserRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->createAdmin($request);
+        return $this->userAccountService->registerUser($request);
     }
 
-    public function updateAccount()
+    public function updateAccount(UserRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->fetchAdmins();
-    }
-
-    #[Pure] public function fetchAnAdmin(Admin $Admin): AdminResource
-    {
-        return $this->userAccountService->fetchAnAdmin($Admin);
+        return $this->userAccountService->updateUser($request);
     }
 }

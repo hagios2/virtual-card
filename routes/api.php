@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,7 @@ Route::prefix('auth')->group(function (){
 
     Route::post('reset/password', [PasswordResetController::class, 'reset']);
 });
+
+Route::post('user/register', [UserAccountController::class, 'registerUser']);
+
+Route::put('user', [UserAccountController::class, 'updateAccount']);
