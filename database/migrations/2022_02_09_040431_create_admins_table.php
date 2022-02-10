@@ -19,8 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('password');
-            $table->boolean('is_active');
-            $table->string('must_change_password')->default(false);
+            $table->boolean('is_active')->default(false);
+            $table->boolean('must_change_password')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
