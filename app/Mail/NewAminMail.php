@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\Admin;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewAminMail extends Mailable
+class NewAminMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +17,8 @@ class NewAminMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public Admin $admin, public string $password)
     {
-        //
     }
 
     /**
@@ -28,6 +28,7 @@ class NewAminMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.NewAdminMail');
+        return $this->markdown('mail.NewAdminMail')
+            ->subject('New Admin Account');
     }
 }
