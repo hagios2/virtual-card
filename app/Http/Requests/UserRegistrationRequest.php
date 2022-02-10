@@ -26,7 +26,7 @@ class UserRegistrationRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|string',
-            'password' => 'bail|required|string',
+            'password' => request()->method() === 'POST' ? 'bail|required|string' : 'bail|nullable|string',
             'postal_address' => 'bail|required|string',
             'physical_address' => 'bail|required|string',
             'property_color' => 'bail|required|string',

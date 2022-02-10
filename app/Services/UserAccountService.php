@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\NewAdminRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Resources\AdminResource;
+use App\Http\Resources\AuthUserResource;
 use App\Mail\NewAminMail;
 use App\Models\Admin;
 use App\Models\User;
@@ -24,20 +25,12 @@ class UserAccountService
 
         Mail::to($user)->queue(new ($user));
 
-        return response()->json(['message' => 'admin created', 'admin' => new AdminResource($user)], 201);
+        return response()->json(['message' => 'admin created', 'admin' => new AuthUserResource($user)], 201);
     }
-
-    public function fetchAdmins(): AnonymousResourceCollection
-    {
-        return AdminResource::collection(Admin::query()->latest()->get());
-    }
-
-
 
     public function updateUser(UserRegistrationRequest $request): JsonResponse
     {
-
-        auth()->user()->update($request->validated());
+        auth()->user()->update($request->safe()->except('password'));
 
         return response()->json(['message' => 'account updated', 'admin' ], 201);
     }
