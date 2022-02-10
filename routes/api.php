@@ -36,4 +36,4 @@ Route::prefix('auth')->group(function (){
 
 Route::post('user/register', [UserAccountController::class, 'registerUser']);
 
-Route::put('user', [UserAccountController::class, 'updateAccount']);
+Route::put('update/user/account', [UserAccountController::class, 'updateAccount']);
