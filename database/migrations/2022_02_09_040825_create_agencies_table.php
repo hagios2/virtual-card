@@ -15,6 +15,12 @@ class CreateAgenciesTable extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('agency');
+            $table->string('email')->unique();
+            $table->string('phone_number');
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
