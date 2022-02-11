@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
@@ -115,15 +116,15 @@ class AuthService implements AuthServiceInterface
         return response()->json(['message' => 'Email not found'], 404);
     }
 
-    public function reset(Request $request, string $account_type): JsonResponse
+    public function reset(ResetPasswordRequest $request, string $account_type): JsonResponse
     {
-        $request->validate(['password' => 'bail|required|string']);
+        $resetData = $request->validated();
 
-        $passwordReset = PasswordReset::query()->where([['token', $request->token], ['account_type', $account_type]])->first();
+        $passwordReset = PasswordReset::query()->where([['token', $resetData['token']], ['account_type', $account_type]])->first();
 
         if ($passwordReset) {
             if ($passwordReset->has_expired || Carbon::parse($passwordReset->created_at)->addMinutes(30)->lessThan(now())) {
-                $passwordReset->update(['hasExpired' => true]);
+                $passwordReset->update(['has_expired' => true]);
                 return response()->json(['message' => 'Operation Aborted! Token has Expired'], 403);
             }
             $client = match ($account_type) {
@@ -132,9 +133,9 @@ class AuthService implements AuthServiceInterface
                 'agency' => Agency::where('email', $passwordReset->email)->first()
             };
 
-            $client->update(['password' => Hash::make($request->password)]);
+            $client->update(['password' => Hash::make($resetData['password'])]);
 
-            PasswordReset::query()->where('token', $request->token)->update(['has_expired' => true]);
+            $passwordReset->update(['has_expired' => true]);
 
             return response()->json(['message' => 'new password saved']);
         }

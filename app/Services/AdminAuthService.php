@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
@@ -47,7 +48,7 @@ class AdminAuthService extends AuthService
         return $this->sendResetMail($client, 'admin');
     }
 
-    public function resetPassword(Request $request): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
         return $this->reset($request, 'admin');
     }
