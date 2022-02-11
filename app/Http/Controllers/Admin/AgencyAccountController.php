@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\AuthAgencyResource;
 use App\Models\Agency;
 use App\Services\AdminManageAgencyAccountService;
@@ -16,6 +17,11 @@ class AgencyAccountController extends Controller
     {
     }
 
+    public function registerAgency(AgencyRegistrationRequest $request): JsonResponse
+    {
+        return $this->agencyAccountService->registerAgency($request);
+    }
+
     #[Pure] public function fetchAgency(Agency $Agency): AuthAgencyResource
     {
         return $this->agencyAccountService->fetchAgency($Agency);
@@ -24,6 +30,11 @@ class AgencyAccountController extends Controller
     public function fetchAgencies(): AnonymousResourceCollection
     {
         return $this->agencyAccountService->fetchAgencies();
+    }
+
+    public function updateAccount(Agency $agency, AgencyRegistrationRequest $request): JsonResponse
+    {
+        return $this->agencyAccountService->updateAgency($agency, $request);
     }
 
     public function blockAgency(Agency $Agency): JsonResponse

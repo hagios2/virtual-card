@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @method static create(array $agencyData)
+ */
 class Agency extends Authenticatable implements JWTSubject
 {
     use HasFactory;
