@@ -26,8 +26,8 @@ class NewAdminRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|string',
-            'email' => ['bail', 'required', 'string', Rule::unique('admins')->ignore($this->route()->parameter('admin')->id)],
-            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('admins')->ignore($this->route()->parameter('admin')->id)],
+            'email' => ['bail', 'required', 'string', Rule::unique('admins')->ignore($this->route()->parameter('admin'))],
+            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('admins')->ignore($this->route()->parameter('admin'))],
             'role' => 'bail|required|string'
         ];
     }
