@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\NewAdminRequest;
 use App\Http\Resources\AdminResource;
+use App\Http\Resources\AuthAgencyResource;
 use App\Mail\NewAminMail;
 use App\Models\Admin;
 use App\Models\Agency;
@@ -38,6 +40,13 @@ class AdminService extends ManageAccountService
     #[Pure] public function fetchAnAdmin(Admin $admin): AdminResource
     {
         return new AdminResource($admin);
+    }
+
+    public function updateAdmin(Admin $admin, NewAdminRequest $request): JsonResponse
+    {
+        $admin->update($request->validated());
+
+        return response()->json(['message' => 'admin updated', 'admin' => new AdminResource($admin)]);
     }
 
     public function blockAdmin(Admin $admin): JsonResponse

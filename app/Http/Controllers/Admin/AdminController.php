@@ -28,9 +28,14 @@ class AdminController extends Controller
         return $this->adminService->fetchAdmins();
     }
 
-    #[Pure] public function fetchAnAdmin(Admin $Admin): AdminResource
+    #[Pure] public function fetchAnAdmin(Admin $admin): AdminResource
     {
-        return $this->adminService->fetchAnAdmin($Admin);
+        return $this->adminService->fetchAnAdmin($admin);
+    }
+
+    public function updateAdmin(Admin $admin, NewAdminRequest $request): JsonResponse
+    {
+        return $this->adminService->updateAdmin($admin, $request);
     }
 
     public function blockAdmin(Admin $admin): JsonResponse
