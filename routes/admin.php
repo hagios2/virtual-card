@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AgencyAccountController;
 use App\Http\Controllers\Admin\UserAccountController;
 use App\Services\AdminManageUserAccountService;
 use Illuminate\Support\Facades\Route;
@@ -47,13 +48,13 @@ Route::patch('deactivate/{user}/user-account', [UserAccountController::class, 'b
 
 Route::patch('activate/{user}/user-account', [UserAccountController::class, 'unBlockUser']);
 
-Route::get('fetch/agency/accounts', [AdminManageUserAccountService::class, 'fetchUsers']);
+Route::get('fetch/agency/accounts', [AgencyAccountController::class, 'fetchAgencies']);
 
-Route::get('fetch/{agency}/agency-account', [AdminManageUserAccountService::class, 'fetchUser']);
+Route::get('fetch/{agency}/agency-account', [AgencyAccountController::class, 'fetchAgency']);
 
-Route::patch('deactivate/{agency}/agency-account', [AdminManageUserAccountService::class, 'blockUser']);
+Route::patch('deactivate/{agency}/agency-account', [AgencyAccountController::class, 'blockAgency']);
 
-Route::patch('activate/{agency}/agency-account', [AdminManageUserAccountService::class, 'unBlockUser']);
+Route::patch('activate/{agency}/agency-account', [AgencyAccountController::class, 'unBlockAgency']);
 
 #---------------------------- End Super Admin Routes --------------------------------------------------------------
 

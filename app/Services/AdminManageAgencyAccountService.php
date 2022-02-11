@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Http\Resources\AuthUserResource;
+use App\Http\Resources\AuthAgencyResource;
 use App\Models\Agency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JetBrains\PhpStorm\Pure;
 
-class AdminManageAgencyAccount extends ManageAccountService
+class AdminManageAgencyAccountService extends ManageAccountService
 {
-    #[Pure] public function fetchAgency(Agency $agency): AuthUserResource
+    #[Pure] public function fetchAgency(Agency $agency): AuthAgencyResource
     {
-        return new AuthUserResource($agency);
+        return new AuthAgencyResource($agency);
     }
 
     public function fetchAgencies(): AnonymousResourceCollection
@@ -20,7 +20,7 @@ class AdminManageAgencyAccount extends ManageAccountService
         $agencies = Agency::query()
             ->latest()->get();
 
-        return AuthUserResource::collection($agencies);
+        return AuthAgencyResource::collection($agencies);
     }
 
     public function blockAgency(Agency $agency): JsonResponse
