@@ -8,6 +8,8 @@ use App\Http\Requests\NewAdminRequest;
 use App\Http\Resources\AdminResource;
 use App\Http\Resources\DetailedStaffResource;
 use App\Models\Admin;
+use App\Models\Agency;
+use App\Models\User;
 use App\Services\AdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -44,5 +46,15 @@ class AdminController extends Controller
     public function unBlockAdmin(Admin $admin): JsonResponse
     {
         return $this->adminService->unBlockAdmin($admin);
+    }
+
+    public function blockAgency(Agency $agency): JsonResponse
+    {
+        return $this->adminService->blockAgency($agency);
+    }
+
+    public function unBlockAgency(Agency $agency): JsonResponse
+    {
+        return $this->adminService->unBlockAgency($agency);
     }
 }

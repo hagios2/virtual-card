@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Services\AdminManageUserAccountService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\PasswordResetController;
@@ -25,7 +26,7 @@ Route::prefix('auth')->group(function (){
     Route::post('reset/password', [PasswordResetController::class, 'reset']);
 });
 
-#---------------------------- Staff Routes --------------------------------
+#---------------------------- Super Admin Routes --------------------------------
 
 Route::post('add/admin', [AdminController::class, 'createAmin']);
 
@@ -37,6 +38,14 @@ Route::patch('deactivate/{admin}/admin-account', [AdminController::class, 'block
 
 Route::patch('activate/{admin}/admin-account', [AdminController::class, 'unBlockAdmin']);
 
-#---------------------------- End Staff Routes --------------------------------
+Route::get('fetch/user/account', [AdminManageUserAccountService::class, 'fetchUsers']);
+
+Route::get('fetch/{user}/user-account', [AdminManageUserAccountService::class, 'fetchUser']);
+
+Route::patch('deactivate/{user}/user-account', [AdminManageUserAccountService::class, 'blockUser']);
+
+Route::patch('activate/{user}/user-account', [AdminManageUserAccountService::class, 'unBlockUser']);
+
+#---------------------------- End Super Admin Routes --------------------------------
 
 

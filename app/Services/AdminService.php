@@ -6,13 +6,14 @@ use App\Http\Requests\NewAdminRequest;
 use App\Http\Resources\AdminResource;
 use App\Mail\NewAminMail;
 use App\Models\Admin;
+use App\Models\Agency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 
-class AdminService
+class AdminService extends ManageAccountService
 {
     public function createAdmin(NewAdminRequest $request): JsonResponse
     {
@@ -41,23 +42,21 @@ class AdminService
 
     public function blockAdmin(Admin $admin): JsonResponse
     {
-        if ($admin->is_active) {
-            $admin->update(['is_active' => false]);
-
-            return response()->json(['message' => 'deactivated']);
-        }
-
-        return response()->json(['message' => 'account already deactivated']);
+        return $this->blockAccount($admin);
     }
 
     public function unBlockAdmin(Admin $admin): JsonResponse
     {
-        if (!$admin->is_active) {
-            $admin->update(['is_active' => true]);
+        return $this->unBlockAccount($admin);
+    }
 
-            return response()->json(['message' => 'activated']);
-        }
+    public function blockAgency(Agency $agency): JsonResponse
+    {
+        return $this->blockAccount($agency);
+    }
 
-        return response()->json(['message' => 'account already activated']);
+    public function unBlockAgency(Agency $agency): JsonResponse
+    {
+        return $this->unBlockAccount($agency);
     }
 }
