@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @method static create(array $adminData)
+ * @method static where(string $string, mixed $email)
  */
 class Admin extends Authenticatable implements JWTSubject
 {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Services\AgencyAuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,5 +33,20 @@ class AuthController extends Controller
     public function refresh(): JsonResponse
     {
         return $this->agencyAuthService->refresh();
+    }
+
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
+    {
+        return $this->agencyAuthService->changePassword($request);
+    }
+
+    public function sendResetMail(Request $request): JsonResponse
+    {
+        return $this->agencyAuthService->sendResetRequest($request);
+    }
+
+    public function reset(Request $request): JsonResponse
+    {
+        return $this->agencyAuthService->resetPassword($request);
     }
 }
