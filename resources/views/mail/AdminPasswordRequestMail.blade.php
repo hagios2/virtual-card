@@ -7,9 +7,9 @@
     </p>
 </section>
 
-@component('mail::button', ['url' => env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"])
-    Reset Password
-@endcomponent
+{{--@component('mail::button', ['url' => env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"])--}}
+{{--    Reset Password--}}
+{{--@endcomponent--}}
 
 <section>
     <p>
