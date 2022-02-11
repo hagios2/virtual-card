@@ -31,7 +31,7 @@ Route::prefix('auth')->group(function (){
 
 Route::post('create', [AdminController::class, 'createAdmin']);
 
-Route::get('fetch/admins', [AdminController::class, 'fetchAnAdmin']);
+Route::get('fetch/admins', [AdminController::class, 'fetchAdmins']);
 
 Route::get('{admin}/fetch/', [AdminController::class, 'fetchAnAdmin']);
 
