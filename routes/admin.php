@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserAccountController;
 use App\Services\AdminManageUserAccountService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
@@ -26,7 +27,7 @@ Route::prefix('auth')->group(function (){
     Route::post('reset/password', [PasswordResetController::class, 'reset']);
 });
 
-#---------------------------- Super Admin Routes --------------------------------
+#---------------------------- Super Admin Routes ------------------------------------------------------
 
 Route::post('add/admin', [AdminController::class, 'createAmin']);
 
@@ -38,14 +39,22 @@ Route::patch('deactivate/{admin}/admin-account', [AdminController::class, 'block
 
 Route::patch('activate/{admin}/admin-account', [AdminController::class, 'unBlockAdmin']);
 
-Route::get('fetch/user/account', [AdminManageUserAccountService::class, 'fetchUsers']);
+Route::get('fetch/user/accounts', [UserAccountController::class, 'fetchUsers']);
 
-Route::get('fetch/{user}/user-account', [AdminManageUserAccountService::class, 'fetchUser']);
+Route::get('fetch/{user}/user-account', [UserAccountController::class, 'fetchUser']);
 
-Route::patch('deactivate/{user}/user-account', [AdminManageUserAccountService::class, 'blockUser']);
+Route::patch('deactivate/{user}/user-account', [UserAccountController::class, 'blockUser']);
 
-Route::patch('activate/{user}/user-account', [AdminManageUserAccountService::class, 'unBlockUser']);
+Route::patch('activate/{user}/user-account', [UserAccountController::class, 'unBlockUser']);
 
-#---------------------------- End Super Admin Routes --------------------------------
+Route::get('fetch/agency/accounts', [AdminManageUserAccountService::class, 'fetchUsers']);
+
+Route::get('fetch/{agency}/agency-account', [AdminManageUserAccountService::class, 'fetchUser']);
+
+Route::patch('deactivate/{agency}/agency-account', [AdminManageUserAccountService::class, 'blockUser']);
+
+Route::patch('activate/{agency}/agency-account', [AdminManageUserAccountService::class, 'unBlockUser']);
+
+#---------------------------- End Super Admin Routes --------------------------------------------------------------
 
 

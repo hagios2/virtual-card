@@ -49,14 +49,4 @@ class AdminService extends ManageAccountService
     {
         return $this->unBlockAccount($admin);
     }
-
-    public function blockAgency(Agency $agency): JsonResponse
-    {
-        return $this->blockAccount($agency);
-    }
-
-    public function unBlockAgency(Agency $agency): JsonResponse
-    {
-        return $this->unBlockAccount($agency);
-    }
 }
