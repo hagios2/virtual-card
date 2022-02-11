@@ -20,7 +20,9 @@ class AdminResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'role' => $this->getRoleNames()
+            'role' => $this->getRoleNames(),
+            'is_active' => $this->is_active,
+            'must_change_password' => $this->must_change_password
         ];
     }
 }
