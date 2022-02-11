@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\AuthAdminResource;
+use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
 use App\Interfaces\AuthServiceInterface;
@@ -54,11 +54,11 @@ class AuthService implements AuthServiceInterface
         ]);
     }
 
-    public function getAuthResource(string $guard = 'api'): AuthAgencyResource|AuthAdminResource|AuthUserResource
+    public function getAuthResource(string $guard = 'api'): AuthAgencyResource|AdminResource|AuthUserResource
     {
         return match ($guard) {
             'api' => new AuthUserResource(auth()->user()),
-            'admin' => new AuthAdminResource(auth()->guard($guard)->user()),
+            'admin' => new AdminResource(auth()->guard($guard)->user()),
             'agency' => new AuthAgencyResource(auth()->guard($guard)->user())
         };
     }
