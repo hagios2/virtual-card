@@ -3,7 +3,7 @@
 
 <section>
     <p>
-        You have requested to reset your password, kindly click on the button below to reset your password.
+        You have requested to reset your password, kindly click on the link below to reset your password.
     </p>
 </section>
 
