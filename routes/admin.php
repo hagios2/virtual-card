@@ -46,7 +46,7 @@ Route::get('fetch/user/accounts', [UserAccountController::class, 'fetchUsers']);
 
 Route::get('fetch/{user}/user-account', [UserAccountController::class, 'fetchUser']);
 
-Route::get('update/{user}/user-account', [UserAccountController::class, 'u']);
+Route::put('update/{user}/user-account', [UserAccountController::class, 'updateUser']);
 
 Route::patch('deactivate/{user}/user-account', [UserAccountController::class, 'blockUser']);
 
@@ -55,6 +55,8 @@ Route::patch('activate/{user}/user-account', [UserAccountController::class, 'unB
 Route::get('fetch/agency/accounts', [AgencyAccountController::class, 'fetchAgencies']);
 
 Route::get('fetch/{agency}/agency-account', [AgencyAccountController::class, 'fetchAgency']);
+
+Route::put('update/{agency}/agency-account', [AgencyAccountController::class, 'updateAccount']);
 
 Route::patch('deactivate/{agency}/agency-account', [AgencyAccountController::class, 'blockAgency']);
 
