@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Resources\AuthUserResource;
 use App\Models\User;
 use App\Services\AdminManageUserAccountService;
@@ -24,6 +25,11 @@ class UserAccountController extends Controller
     public function fetchUsers(): AnonymousResourceCollection
     {
         return $this->userAccountService->fetchUsers();
+    }
+
+    public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse
+    {
+        return $this->userAccountService->updateUser($user, $request);
     }
 
     public function blockUser(User $user): JsonResponse
