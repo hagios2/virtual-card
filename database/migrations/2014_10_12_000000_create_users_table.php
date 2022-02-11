@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('emergency_contact3_phone_number')->nullable();
             $table->string('lat');
             $table->string('lng');
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

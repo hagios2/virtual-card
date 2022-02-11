@@ -20,6 +20,7 @@ class CreateAgenciesTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('password');
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
