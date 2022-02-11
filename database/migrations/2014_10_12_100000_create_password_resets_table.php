@@ -17,6 +17,7 @@ class CreatePasswordResetsTable extends Migration
             $table->id();
             $table->string('email')->index();
             $table->string('token');
+            $table->boolean('has_expired')->default(false);
             $table->string('user_account')->nullable();
             $table->string('agency_account')->nullable();
             $table->string('admin_account')->nullable();
