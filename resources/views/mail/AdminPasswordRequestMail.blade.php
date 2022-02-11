@@ -1,5 +1,5 @@
-@component('mail::message')
-# Hello {{$admin->name}}
+{{--@component('mail::message')--}}
+<h5>Hello {{$admin->name}}</h5>
 
 <section>
     <p>
@@ -25,4 +25,4 @@
 
 Thanks,<br>
 {{ config('app.name') }}
-@endcomponent
+{{--@endcomponent--}}

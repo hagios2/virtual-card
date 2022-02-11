@@ -29,7 +29,7 @@ class AdminPasswordRequestMail extends Mailable implements ShouldQueue
      */
     public function build(): static
     {
-        return $this->markdown('mail.AdminPasswordRequestMail')
+        return $this->view('mail.AdminPasswordRequestMail')
             ->subject('Password Reset');
     }
 }
