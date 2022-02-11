@@ -22,7 +22,7 @@ class AuthService implements AuthServiceInterface
 
         $tokenResponse['user'] = $this->getAuthResource($guard);
 
-        return $tokenResponse;
+        return response()->json($tokenResponse);
     }
 
 
@@ -45,16 +45,16 @@ class AuthService implements AuthServiceInterface
      */
     public function guardRefresh(string $guard = 'api'): JsonResponseAlias
     {
-        return $this->respondWithToken(auth()->guard($guard)->refresh(), $guard);
+        return response()->json($this->respondWithToken(auth()->guard($guard)->refresh(), $guard));
     }
 
 
-    public function respondWithToken($token, string $guard): JsonResponseAlias
+    public function respondWithToken($token, string $guard): array
     {
-        return response()->json([
+        return [
             'access_token' => $token,
             'token_type' => 'bearer',
-        ]);
+        ];
     }
 
     public function getAuthResource(string $guard = 'api'): AuthAgencyResource|AdminResource|AuthUserResource
