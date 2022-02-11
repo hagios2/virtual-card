@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -12,6 +13,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable implements JWTSubject
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 
 
     /**
