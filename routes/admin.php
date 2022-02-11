@@ -29,17 +29,17 @@ Route::prefix('auth')->group(function (){
 
 #---------------------------- Super Admin Routes ------------------------------------------------------
 
-Route::post('add/admin', [AdminController::class, 'createAmin']);
+Route::post('create', [AdminController::class, 'createAmin']);
 
 Route::get('fetch/admins', [AdminController::class, 'fetchAnAdmin']);
 
-Route::get('fetch/{admin}/admin', [AdminController::class, 'fetchAnAdmin']);
+Route::get('{admin}/fetch/', [AdminController::class, 'fetchAnAdmin']);
 
-Route::put('update/{admin}/admin', [AdminController::class, 'updateAdmin']);
+Route::put('{admin}/update', [AdminController::class, 'updateAdmin']);
 
-Route::patch('deactivate/{admin}/admin-account', [AdminController::class, 'blockAdmin']);
+Route::patch('deactivate/{admin}/account', [AdminController::class, 'blockAdmin']);
 
-Route::patch('activate/{admin}/admin-account', [AdminController::class, 'unBlockAdmin']);
+Route::patch('activate/{admin}/account', [AdminController::class, 'unBlockAdmin']);
 
 Route::get('fetch/user/accounts', [UserAccountController::class, 'fetchUsers']);
 

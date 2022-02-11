@@ -1,5 +1,5 @@
-@component('mail::message')
-# Welcome {{ $admin?->name }},
+{{--@component('mail::message')--}}
+<h5>Welcome {{ $admin?->name }}</h5>,
 
 <p>
     You have been added to CHERT WORKSPACE.<br>
@@ -8,10 +8,12 @@
     Password: <b> {{ $password }} </b>
 </p>
 
-@component('mail::button', ['url' => 'https://dev-cehrtworkspace.netlify.app/'])
-    Login
-@endcomponent
+{{--@component('mail::button', ['url' => 'https://dev-cehrtworkspace.netlify.app/'])--}}
+{{--    Login--}}
+{{--@endcomponent--}}
+
+<a href="https://dev-cehrtworkspace.netlify.app/">Login</a>
 
 Thanks,<br>
 {{ config('app.name') }}
-@endcomponent
+{{--@endcomponent--}}
