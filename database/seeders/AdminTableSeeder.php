@@ -14,11 +14,12 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
+        $admin = Admin::create([
             'name' => 'Emmanuel Oteng',
             'email' => 'hagioswilson@gmail.com',
             'password' => bcrypt('123456'),
-
         ]);
+
+        $admin->assignRole('super admin');
     }
 }

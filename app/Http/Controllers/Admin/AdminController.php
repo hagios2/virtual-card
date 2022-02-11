@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     public function __construct(protected AdminService $adminService)
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin', 'role:super-admin']);
     }
 
     public function createAdmin(NewAdminRequest $request): JsonResponse

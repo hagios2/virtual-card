@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
         $roles = ['supervisor', 'data entry user', 'admin', 'super admin'];
 
         foreach ($roles as $role) {
-            Role::create(['role' => $role]);
+            Role::create(['guard_name' => 'admin', 'name' => $role]);
         }
     }
 }
