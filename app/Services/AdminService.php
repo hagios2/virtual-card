@@ -2,13 +2,10 @@
 
 namespace App\Services;
 
-use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\NewAdminRequest;
 use App\Http\Resources\AdminResource;
-use App\Http\Resources\AuthAgencyResource;
 use App\Mail\NewAminMail;
 use App\Models\Admin;
-use App\Models\Agency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Mail;
@@ -19,13 +16,15 @@ class AdminService extends ManageAccountService
 {
     public function createAdmin(NewAdminRequest $request): JsonResponse
     {
-        $adminData = $request->validated();
+        $adminData = $request->except('role');
 
         $password = Str::random(8);
 
         $adminData['password'] = bcrypt($password);
 
         $admin = Admin::create($adminData);
+
+        $admin->assignRole($request->safe()->role);
 
         Mail::to($admin)->queue(new NewAminMail($admin, $password));
 

@@ -29,7 +29,7 @@ Route::prefix('auth')->group(function (){
 
 #---------------------------- Super Admin Routes ------------------------------------------------------
 
-Route::post('create', [AdminController::class, 'createAmin']);
+Route::post('create', [AdminController::class, 'createAdmin']);
 
 Route::get('fetch/admins', [AdminController::class, 'fetchAnAdmin']);
 
