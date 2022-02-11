@@ -12,5 +12,5 @@ interface AuthServiceInterface
 
     public function guardRefresh(string $guard = 'api'): JsonResponseAlias;
 
-    public function respondWithToken($token, string $guard): JsonResponseAlias;
+    public function respondWithToken($token, string $guard): array;
 }
