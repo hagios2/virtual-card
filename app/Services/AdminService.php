@@ -43,7 +43,7 @@ class AdminService extends ManageAccountService
 
     public function updateAdmin(Admin $admin, NewAdminRequest $request): JsonResponse
     {
-        $admin->update($request->validated());
+        $admin->update($request->except('role'));
 
         return response()->json(['message' => 'admin updated', 'admin' => new AdminResource($admin)]);
     }
