@@ -27,6 +27,6 @@ class UserAccountService
     {
         auth()->user()->update($request->safe()->except('password'));
 
-        return response()->json(['message' => 'account updated', 'admin' ], 201);
+        return response()->json(['message' => 'account updated']);
     }
 }

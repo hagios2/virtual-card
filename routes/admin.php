@@ -36,6 +36,8 @@ Route::get('fetch/admins', [AdminController::class, 'fetchAnAdmin']);
 
 Route::get('fetch/{admin}/admin', [AdminController::class, 'fetchAnAdmin']);
 
+Route::get('update/{admin}/admin', [AdminController::class, 'updateAdmin']);
+
 Route::patch('deactivate/{admin}/admin-account', [AdminController::class, 'blockAdmin']);
 
 Route::patch('activate/{admin}/admin-account', [AdminController::class, 'unBlockAdmin']);
