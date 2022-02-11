@@ -18,7 +18,11 @@ class AuthService implements AuthServiceInterface
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token, $guard);
+        $tokenResponse = $this->respondWithToken($token, $guard);
+
+        $tokenResponse['user'] = $this->getAuthResource($guard);
+
+        return $tokenResponse;
     }
 
 
@@ -50,7 +54,6 @@ class AuthService implements AuthServiceInterface
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'user' => $this->getAuthResource($guard)
         ]);
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\AuthAdminResource;
+use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
@@ -14,7 +14,7 @@ class AdminAuthService extends AuthService
         return $this->guardLogin('admin');
     }
 
-    public function authUser(): AuthAgencyResource|AuthAdminResource|JsonResponseAlias|AuthUserResource
+    public function authUser(): AuthAgencyResource|AdminResource|JsonResponseAlias|AuthUserResource
     {
         return $this->getAuthResource('admin');
     }
