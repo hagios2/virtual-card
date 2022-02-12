@@ -6,7 +6,9 @@ use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
+use App\Mail\AdminUserRegistrationMail;
 use App\Mail\AgencyRegistrationMail;
+use App\Mail\UserReqistrationMail;
 use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -40,7 +42,7 @@ class AdminManageUserAccountService extends ManageAccountService
 
         $user = User::create($userData);
 
-        Mail::to($user)->queue(new AgencyRegistrationMail($user, $password));
+        Mail::to($user)->queue(new AdminUserRegistrationMail($user, $password));
 
         return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($user)], 201);
     }
