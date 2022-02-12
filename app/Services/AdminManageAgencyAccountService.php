@@ -39,7 +39,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
         Mail::to($agency)->queue(new AgencyRegistrationMail($agency, $password));
 
-        return response()->json(['message' => 'admin created', 'agency' => new AuthAgencyResource($agency)], 201);
+        return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agency)], 201);
     }
 
     public function updateAgency(Agency $agency, AgencyRegistrationRequest $request): JsonResponse

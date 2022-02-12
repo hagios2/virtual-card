@@ -51,6 +51,8 @@ Route::patch('deactivate/{user}/user-account', [UserAccountController::class, 'b
 
 Route::patch('activate/{user}/user-account', [UserAccountController::class, 'unBlockUser']);
 
+Route::get('create/agency/account', [AgencyAccountController::class, 'fetchAgencies']);
+
 Route::get('fetch/agency/accounts', [AgencyAccountController::class, 'fetchAgencies']);
 
 Route::get('fetch/{agency}/agency-account', [AgencyAccountController::class, 'fetchAgency']);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AgencyRegistrationRequest extends FormRequest
 {
@@ -21,10 +22,13 @@ class AgencyRegistrationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'name' => 'bail|required|string',
+            'email' => ['bail', 'required', 'string', Rule::unique('agencies')->ignore($this->route()->parameter('agency'))],
+            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agencies')->ignore($this->route()->parameter('agency'))],
+            'agency' => 'bail|required|string'
         ];
     }
 }
