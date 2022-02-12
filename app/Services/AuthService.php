@@ -32,12 +32,23 @@ class AuthService implements AuthServiceInterface
         if (! $token = auth()->guard($guard)->attempt($credentials)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
-
         $tokenResponse = $this->respondWithToken($token, $guard);
 
         $tokenResponse['user'] = $this->getAuthResource($guard);
 
+        auth()->guard($guard)->user()->update(['last_login' => now()]);
+
+        $this->checkAndVerifyUser($guard);
+
         return response()->json($tokenResponse);
+    }
+
+    # this will automatically verify users registered by admin the first time they log in
+    public function checkAndVerifyUser(string $guard)
+    {
+        if ($guard === 'api' && auth()->user()->registered_by_admin && !auth()->user()->email_verified_at) {
+            auth()->guard($guard)->user()->update(['email_verified_at' => now()]);
+        }
     }
 
     public function guardLogout(string $guard = 'api'): JsonResponseAlias
