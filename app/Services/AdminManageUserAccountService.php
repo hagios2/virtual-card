@@ -30,19 +30,19 @@ class AdminManageUserAccountService extends ManageAccountService
         return AuthUserResource::collection($users);
     }
 
-    public function registerAgency(AgencyRegistrationRequest $request): JsonResponse
+    public function registerUser(UserRegistrationRequest $request): JsonResponse
     {
-        $agencyData = $request->validated();
-
         $password = Str::random(8);
 
-        $agencyData['password'] = bcrypt($password);
+        $userData = $request->except('password');
 
-        $agency = Agency::create($agencyData);
+        $userData['password'] = bcrypt($password);
 
-        Mail::to($agency)->queue(new AgencyRegistrationMail($agency, $password));
+        $user = Agency::create($userData);
 
-        return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agency)], 201);
+        Mail::to($user)->queue(new AgencyRegistrationMail($user, $password));
+
+        return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($user)], 201);
     }
 
     public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse

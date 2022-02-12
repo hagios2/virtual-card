@@ -43,6 +43,8 @@ Route::patch('activate/{admin}/account', [AdminController::class, 'unBlockAdmin'
 
 Route::get('fetch/user/accounts', [UserAccountController::class, 'fetchUsers']);
 
+Route::get('create/user/account', [UserAccountController::class, 'registerAgency']);
+
 Route::get('fetch/{user}/user-account', [UserAccountController::class, 'fetchUser']);
 
 Route::put('update/{user}/user-account', [UserAccountController::class, 'updateUser']);
