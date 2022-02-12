@@ -2,14 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
-use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
 use App\Mail\AdminUserRegistrationMail;
-use App\Mail\AgencyRegistrationMail;
-use App\Mail\UserReqistrationMail;
-use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -44,7 +39,7 @@ class AdminManageUserAccountService extends ManageAccountService
 
         Mail::to($user)->queue(new AdminUserRegistrationMail($user, $password));
 
-        return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($user)], 201);
+        return response()->json(['message' => 'agency created', 'agency' => new AuthUserResource($user)], 201);
     }
 
     public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse

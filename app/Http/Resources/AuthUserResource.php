@@ -35,7 +35,9 @@ class AuthUserResource extends JsonResource
             'emergency_contact3_phone_number' => $this->emergency_contact3_phone_number,
             'lat' => $this->lat,
             'lng' => $this->lng,
-            'is_active' => $this->is_active
+            'is_active' => $this->is_active,
+            'email_verified_at' => $this->email_verified_at,
+            'last_login' => $this->last_login,
         ];
     }
 }
