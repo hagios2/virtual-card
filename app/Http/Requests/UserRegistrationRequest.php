@@ -39,7 +39,7 @@ class UserRegistrationRequest extends FormRequest
             'emergency_contact1_name' => 'bail|required|string',
             'emergency_contact2_name' => 'bail|nullable|string',
             'emergency_contact3_name' => 'bail|nullable|string',
-            'email' => ['bail', 'required', 'string', Rule::unique('users')->ignore($this->user('api')->id)],
+            'email' => ['bail', 'required', 'string', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'emergency_contact1_phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'emergency_contact2_phone_number' => ['bail', 'nullable', 'required_with:emergency_contact2_name', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
