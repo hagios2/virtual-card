@@ -9,7 +9,7 @@
 </p>
 
 @component('mail::button', ['url' => ''])
-Button Text
+Login
 @endcomponent
 
 Thanks,<br>
