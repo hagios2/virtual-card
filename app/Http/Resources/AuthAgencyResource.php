@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Agency;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AuthAgencyResource extends JsonResource
@@ -14,14 +15,15 @@ class AuthAgencyResource extends JsonResource
      */
     public function toArray($request)
     {
+        $agency = Agency::find($this->id);
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
             'agency' => $this->agency,
-            'is_active' => $this->is_active,
-            'must_change_password' => $this->must_change_password,
+            'is_active' => $agency->is_active,
+            'must_change_password' => $agency->must_change_password,
         ];
     }
 }
