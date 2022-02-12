@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('lat');
             $table->string('lng');
             $table->boolean('is_active')->default(true);
+            $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
