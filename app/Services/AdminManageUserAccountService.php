@@ -38,7 +38,7 @@ class AdminManageUserAccountService extends ManageAccountService
 
         $userData['password'] = bcrypt($password);
 
-        $user = Agency::create($userData);
+        $user = User::create($userData);
 
         Mail::to($user)->queue(new AgencyRegistrationMail($user, $password));
 
