@@ -21,6 +21,7 @@ class CreateAgenciesTable extends Migration
             $table->string('phone_number');
             $table->string('password');
             $table->boolean('is_active')->default(true);
+            $table->boolean('must_change_password')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

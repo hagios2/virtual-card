@@ -14,6 +14,14 @@ class AuthAgencyResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone_number' => $this->phone_number,
+            'agency' => $this->agency,
+            'is_active' => $this->is_active,
+            'must_change_password' => $this->must_change_password,
+        ];
     }
 }
