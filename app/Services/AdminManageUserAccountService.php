@@ -2,12 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
-use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
-use App\Models\Admin;
-use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

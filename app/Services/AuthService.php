@@ -18,7 +18,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -28,9 +27,10 @@ class AuthService implements AuthServiceInterface
     public function guardLogin(string $guard = 'api'): JsonResponseAlias
     {
         $credentials = request(['email', 'password']);
+        $credentials['is_active'] = true;
 
         if (! $token = auth()->guard($guard)->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
         $tokenResponse = $this->respondWithToken($token, $guard);

@@ -3,11 +3,8 @@
 namespace App\Services;
 
 use App\Http\Requests\AgencyRegistrationRequest;
-use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Mail\AgencyRegistrationMail;
-use App\Mail\NewAminMail;
-use App\Models\Admin;
 use App\Models\Agency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
