@@ -45,6 +45,8 @@ class AdminService extends ManageAccountService
     {
         $admin->update($request->except('role'));
 
+        $admin->syncRoles($request->safe()->role);
+
         return response()->json(['message' => 'admin updated', 'admin' => new AdminResource($admin)]);
     }
 
