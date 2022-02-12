@@ -16,6 +16,11 @@ class Agency extends Authenticatable implements JWTSubject
 
     protected $guarded = ['id'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
