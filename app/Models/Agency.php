@@ -14,12 +14,14 @@ class Agency extends Authenticatable implements JWTSubject
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
      */
-    public function getJWTIdentifier()
+    public function getJWTIdentifier(): mixed
     {
         return $this->getKey();
     }
@@ -29,7 +31,7 @@ class Agency extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
