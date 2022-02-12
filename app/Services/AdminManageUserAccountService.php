@@ -2,11 +2,17 @@
 
 namespace App\Services;
 
+use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
+use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
+use App\Mail\AgencyRegistrationMail;
+use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 
 class AdminManageUserAccountService extends ManageAccountService
@@ -22,6 +28,21 @@ class AdminManageUserAccountService extends ManageAccountService
             ->latest()->get();
 
         return AuthUserResource::collection($users);
+    }
+
+    public function registerAgency(AgencyRegistrationRequest $request): JsonResponse
+    {
+        $agencyData = $request->validated();
+
+        $password = Str::random(8);
+
+        $agencyData['password'] = bcrypt($password);
+
+        $agency = Agency::create($agencyData);
+
+        Mail::to($agency)->queue(new AgencyRegistrationMail($agency, $password));
+
+        return response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agency)], 201);
     }
 
     public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse

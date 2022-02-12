@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Resources\AuthUserResource;
 use App\Models\User;
@@ -15,6 +16,11 @@ class UserAccountController extends Controller
 {
     public function __construct(public AdminManageUserAccountService $userAccountService)
     {
+    }
+
+    public function registerAgency(AgencyRegistrationRequest $request): JsonResponse
+    {
+        return $this->userAccountService->registerAgency($request);
     }
 
     #[Pure] public function fetchUser(User $user): AuthUserResource

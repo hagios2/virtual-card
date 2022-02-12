@@ -25,8 +25,9 @@ class UserRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'registered_by_admin' => 'bail|boolean|required',
             'name' => 'bail|required|string',
-            'password' => request()->method() === 'POST' ? 'bail|required|string' : 'bail|nullable|string',
+            'password' => request()->method() === 'POST' ? 'bail|required_if:registered_by_admin,false|string' : 'bail|nullable|string',
             'postal_address' => 'bail|required|string',
             'physical_address' => 'bail|required|string',
             'property_color' => 'bail|required|string',
