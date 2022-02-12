@@ -15,6 +15,7 @@ class AgencyAccountController extends Controller
 {
     public function __construct(public AdminManageAgencyAccountService $agencyAccountService)
     {
+        $this->middleware(['auth:admin', 'role:super admin']);
     }
 
     public function registerAgency(AgencyRegistrationRequest $request): JsonResponse
