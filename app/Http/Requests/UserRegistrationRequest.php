@@ -40,10 +40,10 @@ class UserRegistrationRequest extends FormRequest
             'emergency_contact2_name' => 'bail|nullable|string',
             'emergency_contact3_name' => 'bail|nullable|string',
             'email' => ['bail', 'required', 'string', Rule::unique('users')->ignore($this->user('api')->id)],
-            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->user('api')->id)],
-            'emergency_contact1_phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->user('api')->id)],
-            'emergency_contact2_phone_number' => ['bail', 'nullable', 'required_with:emergency_contact2_name', 'digits:10', Rule::unique('users')->ignore($this->user('api')->id)],
-            'emergency_contact3_phone_number' => ['bail', 'nullable', 'required_with:emergency_contact3_name','digits:10', Rule::unique('users')->ignore($this->user('api')->id)],
+            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
+            'emergency_contact1_phone_number' => ['bail', 'required', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
+            'emergency_contact2_phone_number' => ['bail', 'nullable', 'required_with:emergency_contact2_name', 'digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
+            'emergency_contact3_phone_number' => ['bail', 'nullable', 'required_with:emergency_contact3_name','digits:10', Rule::unique('users')->ignore($this->route()->parameter('user'))],
         ];
     }
 }
