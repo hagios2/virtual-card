@@ -24,6 +24,7 @@ class AuthAgencyResource extends JsonResource
             'agency' => $this->agency,
             'is_active' => $agency->is_active,
             'must_change_password' => $agency->must_change_password,
+            'last_login' => $this->last_login
         ];
     }
 }
