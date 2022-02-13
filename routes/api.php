@@ -23,7 +23,7 @@ Route::prefix('auth')->group(function (){
 
     Route::post('refresh', [AuthController::class, 'refresh']);
 
-    Route::get('user', [AuthController::class, 'user']);
+    Route::get('user', [AuthController::class, 'authUser']);
 
     Route::post('user/register', [UserAccountController::class, 'registerUser']);
 
