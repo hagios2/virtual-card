@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Resources\AuthUserResource;
+use App\Mail\UserRegistrationMail;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +19,7 @@ class UserAccountService
 
         $user = User::create($userData);
 
-        Mail::to($user)->queue(new ($user));
+        Mail::to($user)->queue(new UserRegistrationMail($user));
 
         return response()->json(['message' => 'admin created', 'admin' => new AuthUserResource($user)], 201);
     }

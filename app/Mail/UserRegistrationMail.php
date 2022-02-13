@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserReqistrationMail extends Mailable
+class UserRegistrationMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -17,9 +17,8 @@ class UserReqistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct( )
+    public function __construct(public User $user)
     {
-        //
     }
 
     /**
@@ -29,6 +28,7 @@ class UserReqistrationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.UserRegistrationMail');
+        return $this->markdown('mail.UserRegistrationMail')
+            ->subject('New Signup');
     }
 }
