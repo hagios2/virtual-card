@@ -44,7 +44,7 @@ class AdminManageUserAccountService extends ManageAccountService
 
     public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse
     {
-        $user->update($request->validated());
+        $user->update($request->except('password'));
 
         return response()->json(['message' => 'user updated']);
     }

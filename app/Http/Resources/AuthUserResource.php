@@ -23,6 +23,7 @@ class AuthUserResource extends JsonResource
             'phone_number' =>  $this->phone_number,
             'postal_address' => $this->postal_address,
             'physical_address' => $this->physical_address,
+            "email" => $this->email,
             'property_color' => $this->property_color,
             'closest_landmark' => $this->closest_landmark,
             'property_description' => $this->property_description,
