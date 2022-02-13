@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
@@ -13,11 +14,12 @@ class AuthUserResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array|Arrayable|JsonSerializable
      */
     public function toArray($request): array|JsonSerializable|Arrayable
     {
+        $user = User::find($this->id);
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -37,7 +39,7 @@ class AuthUserResource extends JsonResource
             'emergency_contact3_phone_number' => $this->emergency_contact3_phone_number,
             'lat' => $this->lat,
             'lng' => $this->lng,
-            'is_active' => $this->is_active,
+            'is_active' => $user->is_active,
             'email_verified_at' => $this->email_verified_at,
             'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y, g:i A') : null,
         ];

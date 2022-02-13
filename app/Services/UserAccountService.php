@@ -21,7 +21,7 @@ class UserAccountService
 
         Mail::to($user)->queue(new UserRegistrationMail($user));
 
-        return response()->json(['message' => 'admin created', 'admin' => new AuthUserResource($user)], 201);
+        return response()->json(['message' => 'user created', 'user' => new AuthUserResource($user)], 201);
     }
 
     public function updateUser(UserRegistrationRequest $request): JsonResponse
