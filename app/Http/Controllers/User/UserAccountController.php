@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
+use App\Models\User;
 use App\Services\UserAccountService;
 use Illuminate\Http\JsonResponse;
 
@@ -19,8 +20,8 @@ class UserAccountController extends Controller
         return $this->userAccountService->registerUser($request);
     }
 
-    public function updateAccount(UserRegistrationRequest $request): JsonResponse
+    public function updateAccount(User $user, UserRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->updateUser($request);
+        return $this->userAccountService->updateUser($user, $request);
     }
 }

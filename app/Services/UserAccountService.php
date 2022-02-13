@@ -24,9 +24,9 @@ class UserAccountService
         return response()->json(['message' => 'user created', 'user' => new AuthUserResource($user)], 201);
     }
 
-    public function updateUser(UserRegistrationRequest $request): JsonResponse
+    public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse
     {
-        auth()->user()->update($request->safe()->except('password'));
+        $user->update($request->safe()->except('password'));
 
         return response()->json(['message' => 'account updated']);
     }
