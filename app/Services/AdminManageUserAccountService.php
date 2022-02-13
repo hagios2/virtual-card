@@ -39,7 +39,7 @@ class AdminManageUserAccountService extends ManageAccountService
 
         Mail::to($user)->queue(new AdminUserRegistrationMail($user, $password));
 
-        return response()->json(['message' => 'agency created', 'agency' => new AuthUserResource($user)], 201);
+        return response()->json(['message' => 'user created', 'user' => new AuthUserResource($user)], 201);
     }
 
     public function updateUser(User $user, UserRegistrationRequest $request): JsonResponse
