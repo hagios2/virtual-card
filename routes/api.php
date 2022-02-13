@@ -29,9 +29,9 @@ Route::prefix('auth')->group(function (){
 
     Route::put('update/{user}/user/account', [UserAccountController::class, 'updateAccount']);
 
-    Route::post('change/password', [AuthController::class, 'changeUserPassword']);
+    Route::patch('change/password', [AuthController::class, 'changePassword']);
 
     Route::post('send/password-reset/request', [AuthController::class, 'sendResetMail']);
 
-    Route::post('reset/password', [AuthController::class, 'reset']);
+    Route::post('reset/password', [AuthController::class, 'resetPassword']);
 });

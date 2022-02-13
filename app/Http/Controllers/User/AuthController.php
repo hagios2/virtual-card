@@ -46,7 +46,7 @@ class AuthController extends Controller
         return $this->userAuthService->sendResetRequest($request);
     }
 
-    public function reset(Request $request): JsonResponse
+    public function resetPassword(Request $request): JsonResponse
     {
         return $this->userAuthService->resetPassword($request);
     }
