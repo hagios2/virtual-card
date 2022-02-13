@@ -39,7 +39,7 @@ class AuthUserResource extends JsonResource
             'lng' => $this->lng,
             'is_active' => $this->is_active,
             'email_verified_at' => $this->email_verified_at,
-            'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y') : null,
+            'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y, g:i A') : null,
         ];
     }
 }
