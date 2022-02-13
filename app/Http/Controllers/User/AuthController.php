@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Resources\AuthUserResource;
 use App\Services\AdminAuthService;
 use App\Services\UserAuthService;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +22,7 @@ class AuthController extends Controller
         return $this->userAuthService->login();
     }
 
-    public function authUser(): JsonResponse
+    public function authUser(): AuthUserResource
     {
         return $this->userAuthService->authUser();
     }
