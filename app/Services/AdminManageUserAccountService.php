@@ -46,7 +46,7 @@ class AdminManageUserAccountService extends ManageAccountService
     {
         $user->update($request->except('password'));
 
-        return response()->json(['message' => 'user updated']);
+        return response()->json(['message' => 'user updated', 'user' => new AuthUserResource($user)]);
     }
 
     public function blockUser(User $user): JsonResponse
