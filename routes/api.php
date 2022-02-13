@@ -19,13 +19,15 @@ Route::prefix('auth')->group(function (){
 
     Route::post('login', [AuthController::class, 'login']);
 
-    Route::post('register', [AuthController::class, 'login']);
-
     Route::post('logout', [AuthController::class, 'logout']);
 
     Route::post('refresh', [AuthController::class, 'refresh']);
 
     Route::get('user', [AuthController::class, 'user']);
+
+    Route::post('user/register', [UserAccountController::class, 'registerUser']);
+
+    Route::put('update/user/account', [UserAccountController::class, 'updateAccount']);
 
     Route::post('change/password', [AuthController::class, 'changeUserPassword']);
 
@@ -33,7 +35,3 @@ Route::prefix('auth')->group(function (){
 
     Route::post('reset/password', [AuthController::class, 'reset']);
 });
-
-Route::post('user/register', [UserAccountController::class, 'registerUser']);
-
-Route::put('update/user/account', [UserAccountController::class, 'updateAccount']);
