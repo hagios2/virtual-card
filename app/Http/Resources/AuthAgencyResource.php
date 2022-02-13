@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Agency;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AuthAgencyResource extends JsonResource
@@ -24,7 +25,7 @@ class AuthAgencyResource extends JsonResource
             'agency' => $this->agency,
             'is_active' => $agency->is_active,
             'must_change_password' => $agency->must_change_password,
-            'last_login' => $this->last_login
+            'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y') : null,
         ];
     }
 }

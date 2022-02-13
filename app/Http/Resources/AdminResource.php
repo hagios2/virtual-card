@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +24,7 @@ class AdminResource extends JsonResource
             'is_active' => $this->is_active,
             'must_change_password' => $this->must_change_password,
             'role' => $this->getRoleNames(),
-            'last_login' => $this->last_login
+            'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y') : null,
         ];
     }
 }
