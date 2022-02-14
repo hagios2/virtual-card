@@ -21,7 +21,6 @@ class AgentResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'agency' => new AgencyResource($this->agency),
             'is_active' => $this->is_active,
             'must_change_password' => $this->must_change_password,
             'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y, g:i A') : null,
