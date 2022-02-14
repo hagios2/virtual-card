@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Agent;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AuthAgencyResource extends JsonResource
@@ -12,9 +13,9 @@ class AuthAgencyResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array|Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|\JsonSerializable|Arrayable
     {
         $agent = Agent::find($this->id);
         return [
