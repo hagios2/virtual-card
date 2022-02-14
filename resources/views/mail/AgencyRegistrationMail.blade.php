@@ -2,7 +2,7 @@
 # Hello {{$agent?->name}}
 
 <p>
-    You have been added to E-Services as an/a {{$admin->getRoleNames()[0]}} to {{$admin->agency->agency_name}}<br>
+    You have been added to E-Services as an/a {{$agent?->getRoleNames()[0]}} to {{$agent?->agency?->agency_name}}<br>
     Kindly use the credentials below to login. <br>
     Email: <b>{{$agent?->email}} </b> <br>
     Password: <b> {{ $password }} </b>
