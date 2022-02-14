@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AuthAgencyResource;
 use App\Services\AgencyAuthService;
 use Illuminate\Http\JsonResponse;
@@ -46,7 +47,7 @@ class AuthController extends Controller
         return $this->agencyAuthService->sendResetRequest($request);
     }
 
-    public function resetPassword(Request $request): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
         return $this->agencyAuthService->resetPassword($request);
     }
