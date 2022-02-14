@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     public function __construct(protected AgencyAuthService $agencyAuthService)
     {
-        $this->middleware('auth:agency', ['except' => ['login', 'sendResetMail', 'reset']]);
+        $this->middleware('auth:agency', ['except' => ['login', 'sendResetMail', 'resetPassword']]);
     }
 
     public function login(): JsonResponse
