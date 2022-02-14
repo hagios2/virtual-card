@@ -51,7 +51,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
             DB::commit();
 
-            $response = response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agency)], 201);
+            $response = response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agent)], 201);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
 
