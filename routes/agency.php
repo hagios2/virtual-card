@@ -1,10 +1,8 @@
 <?php
 
 
-
-
-
-
+use App\Http\Controllers\Agency\AuthController;
+use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('auth')->group(function (){
@@ -17,9 +15,9 @@ Route::prefix('auth')->group(function (){
 
     Route::get('user', [AuthController::class, 'user']);
 
-    Route::post('change/password', [PasswordResetController::class, 'changeUserPassword']);
+    Route::post('change/password', [AuthController::class, 'changePassword']);
 
-    Route::post('send/password-reset/request', [PasswordResetController::class, 'sendResetMail']);
+    Route::post('send/password-reset/request', [AuthController::class, 'sendResetMail']);
 
-    Route::post('reset/password', [PasswordResetController::class, 'reset']);
+    Route::post('reset/password', [AuthController::class, 'resetPassword']);
 });
