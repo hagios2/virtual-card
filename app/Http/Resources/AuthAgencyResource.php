@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Agency;
 use App\Models\Agent;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
