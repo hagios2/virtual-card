@@ -16,27 +16,27 @@ class AgencyAuthService extends AuthService
 {
     public function login(): JsonResponseAlias
     {
-        return $this->guardLogin('agency');
+        return $this->guardLogin('agent');
     }
 
     public function authUser(): AuthAgencyResource|AdminResource|JsonResponseAlias|AuthUserResource
     {
-        return $this->getAuthResource('agency');
+        return $this->getAuthResource('agent');
     }
 
     public function logout(): JsonResponseAlias
     {
-        return $this->guardLogout('agency');
+        return $this->guardLogout('agent');
     }
 
     public function refresh(): JsonResponseAlias
     {
-        return $this->guardRefresh('agency');
+        return $this->guardRefresh('agent');
     }
 
     public function changePassword(ChangePasswordRequest $request,): JsonResponse
     {
-        return $this->changeUserPassword($request, 'agency');
+        return $this->changeUserPassword($request, 'agent');
     }
 
     public function sendResetRequest(Request $request): JsonResponse
@@ -45,11 +45,11 @@ class AgencyAuthService extends AuthService
 
         $client = Agency::where('email', $request->email)->first();
 
-        return $this->sendResetMail($client, 'agency');
+        return $this->sendResetMail($client, 'agent');
     }
 
     public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
-        return $this->reset($request, 'agency');
+        return $this->reset($request, 'agent');
     }
 }
