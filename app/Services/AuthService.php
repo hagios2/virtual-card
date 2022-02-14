@@ -76,7 +76,7 @@ class AuthService implements AuthServiceInterface
         return match ($guard) {
             'api' => new AuthUserResource(auth()->user()),
             'admin' => new AdminResource(auth()->guard($guard)->user()),
-            'agency' => new AuthAgencyResource(auth()->guard($guard)->user())
+            'agent' => new AuthAgencyResource(auth()->guard($guard)->user())
         };
     }
 
@@ -117,7 +117,7 @@ class AuthService implements AuthServiceInterface
             $mail = match ($account_type) {
                 'admin' => new AdminPasswordRequestMail($client, $passwordReset),
                 'user' => new UserPasswordRequestMail($client, $passwordReset),
-                'agency' => new AgencyPasswordRequestMail($client, $passwordReset),
+                'agent' => new AgencyPasswordRequestMail($client, $passwordReset),
             };
 
             Mail::to($client)->queue($mail);

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Agency;
+use App\Models\Agent;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,7 +17,7 @@ class AuthAgencyResource extends JsonResource
      */
     public function toArray($request)
     {
-        $agency = Agency::find($this->id);
+        $agency = Agent::find($this->id);
         return [
             'id' => $this->id,
             'name' => $this->name,

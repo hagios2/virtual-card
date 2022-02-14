@@ -46,9 +46,9 @@ return [
             'provider' => 'admins',
             'hash' => false,
         ],
-        'agency' => [
+        'agent' => [
             'driver' => 'jwt',
-            'provider' => 'agencies',
+            'provider' => 'agents',
             'hash' => false,
         ],
     ],
@@ -79,9 +79,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'agencies' => [
+        'agents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Agency::class,
+            'model' => App\Models\Agent::class,
         ],
 
         // 'users' => [

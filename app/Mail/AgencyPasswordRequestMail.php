@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Agency;
+use App\Models\Agent;
 use App\Models\PasswordReset;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,7 +18,7 @@ class AgencyPasswordRequestMail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public Agency $agency, public PasswordReset $passwordReset)
+    public function __construct(public Agent $agent, public PasswordReset $passwordReset)
     {
     }
 

@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello {{$agency->name}}
+# Hello {{$agent->name}}
 
 <section>
     <p>

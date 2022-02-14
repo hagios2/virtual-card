@@ -7,7 +7,6 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\AuthUserResource;
-use App\Models\Admin;
 use App\Models\Agency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;

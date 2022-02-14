@@ -2,13 +2,13 @@
 
 namespace App\Mail;
 
-use App\Models\Agency;
+use App\Models\Agent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AgencyRegistrationMail extends Mailable
+class AgencyRegistrationMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,7 @@ class AgencyRegistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct(public Agency $agency, public string $password)
+    public function __construct(public Agent $agent, public string $password)
     {
     }
 
