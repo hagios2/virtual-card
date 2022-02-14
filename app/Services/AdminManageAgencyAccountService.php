@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\AgencyResource;
 use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\DetailedAgencyResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agency;
 use Exception;
@@ -18,9 +19,9 @@ use JetBrains\PhpStorm\Pure;
 
 class AdminManageAgencyAccountService extends ManageAccountService
 {
-    #[Pure] public function fetchAgency(Agency $agency): AgencyResource
+    #[Pure] public function fetchAgency(Agency $agency): DetailedAgencyResource
     {
-        return new AgencyResource($agency);
+        return new DetailedAgencyResource($agency);
     }
 
     public function fetchAgencies(): AnonymousResourceCollection
