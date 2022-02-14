@@ -27,6 +27,7 @@ class AuthAgencyResource extends JsonResource
             'is_active' => $agency->is_active,
             'must_change_password' => $agency->must_change_password,
             'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y, g:i A') : null,
+            'role' => $this->getRoleNames()
         ];
     }
 }
