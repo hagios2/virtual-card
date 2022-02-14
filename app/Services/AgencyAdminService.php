@@ -32,7 +32,7 @@ class AgencyAdminService
 
     public function updateAgentAccount(Agent $agent, AgencyRegistrationRequest $request): JsonResponse
     {
-        $agent->update($request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']));
+        $agent->update($request->safe()->except(['agency_name', 'service_type', 'registered_by_admin', 'role']));
 
         $agent->syncRoles($request->safe()->role);
 
