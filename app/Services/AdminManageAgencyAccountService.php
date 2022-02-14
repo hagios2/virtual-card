@@ -57,7 +57,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
             DB::rollBack();
 
-            $response = response()->json(['message' => 'Whoops! Something went wrong'], 500);
+            $response = response()->json(['message' => $exception->getMessage()], 500);
         }
 
         return $response;
