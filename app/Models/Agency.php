@@ -21,4 +21,9 @@ class Agency extends Model
     {
         return $this->hasMany(Agent::class);
     }
+
+    public function addAgent($agent): Model
+    {
+        return $this->agent()->create($agent);
+    }
 }

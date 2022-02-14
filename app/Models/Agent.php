@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @method static find(mixed $id)
+ * @method static create($agencyData)
  */
 class Agent extends Authenticatable implements JWTSubject
 {

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use JetBrains\PhpStorm\ArrayShape;
 
 class AgencyRegistrationRequest extends FormRequest
 {
@@ -25,10 +26,13 @@ class AgencyRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'registered_by_admin' => 'required|boolean',
             'name' => 'bail|required|string',
             'email' => ['bail', 'required', 'string', Rule::unique('agents')->ignore($this->route()->parameter('agency'))],
             'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agents')->ignore($this->route()->parameter('agency'))],
-            'agency_name' => 'bail|required|string'
+            'agency_name' => 'bail|required_if:registered_by_admin,true|string',
+            'service_type' => 'bail|required_if:registered_by_admin,true|string',
+            'role' => 'bail|required_if:registered_by_admin,false|string'
         ];
     }
 }
