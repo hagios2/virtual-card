@@ -73,7 +73,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
         $agent->update($request->except(['agency_name', 'service_type', 'registered_by_admin']));
 
-        return response()->json(['message' => 'agency updated', 'agency' => new AuthAgencyResource($agency)]);
+        return response()->json(['message' => 'agency updated', 'agency' => new AuthAgencyResource($agent)]);
     }
 
     public function blockAgency(Agency $agency): JsonResponse
