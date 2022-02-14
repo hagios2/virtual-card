@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\AgencyResource;
 use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\DetailedAgencyResource;
 use App\Models\Agency;
 use App\Services\AdminManageAgencyAccountService;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ class AgencyAccountController extends Controller
         return $this->agencyAccountService->registerAgency($request);
     }
 
-    #[Pure] public function fetchAgency(Agency $Agency): AgencyResource
+    #[Pure] public function fetchAgency(Agency $Agency): DetailedAgencyResource
     {
         return $this->agencyAccountService->fetchAgency($Agency);
     }
