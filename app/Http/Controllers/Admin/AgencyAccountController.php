@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRegistrationRequest;
+use App\Http\Resources\AgencyResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Models\Agency;
 use App\Services\AdminManageAgencyAccountService;
@@ -23,7 +24,7 @@ class AgencyAccountController extends Controller
         return $this->agencyAccountService->registerAgency($request);
     }
 
-    #[Pure] public function fetchAgency(Agency $Agency): AuthAgencyResource
+    #[Pure] public function fetchAgency(Agency $Agency): AgencyResource
     {
         return $this->agencyAccountService->fetchAgency($Agency);
     }
