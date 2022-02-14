@@ -25,7 +25,7 @@ Route::prefix('auth')->group(function (){
 
 Route::post('add/an-agent', [AgencyAccountController::class, 'addAgent']);
 
-Route::post('update/{agent}/agent/account', [AgencyAccountController::class, 'updateAgentAccount']);
+Route::put('update/{agent}/agent/account', [AgencyAccountController::class, 'updateAgentAccount']);
 
 Route::get('agents/fetch', [AgencyAccountController::class, 'fetchAgents']);
 
