@@ -26,9 +26,9 @@ class AgencyRegistrationRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|string',
-            'email' => ['bail', 'required', 'string', Rule::unique('agencies')->ignore($this->route()->parameter('agency'))],
-            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agencies')->ignore($this->route()->parameter('agency'))],
-            'agency' => 'bail|required|string'
+            'email' => ['bail', 'required', 'string', Rule::unique('agents')->ignore($this->route()->parameter('agency'))],
+            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agents')->ignore($this->route()->parameter('agency'))],
+            'agency_name' => 'bail|required|string'
         ];
     }
 }
