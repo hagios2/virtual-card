@@ -16,17 +16,17 @@ class AuthAgencyResource extends JsonResource
      */
     public function toArray($request)
     {
-        $agency = Agent::find($this->id);
+        $agent = Agent::find($this->id);
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
             'agency' => $this->agency,
-            'is_active' => $agency->is_active,
-            'must_change_password' => $agency->must_change_password,
+            'is_active' => $agent->is_active,
+            'must_change_password' => $agent->must_change_password,
             'last_login' => $this->last_login ? Carbon::parse($this->last_login)->format('D, d F Y, g:i A') : null,
-            'role' => $this->getRoleNames()
+            'role' => $agent->getRoleNames()
         ];
     }
 }
