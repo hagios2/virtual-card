@@ -18,11 +18,11 @@ class AgencyAccountController extends Controller
 
     public function addAgent(AgencyRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->addAgent($request);
+        return $this->agencyAdminService->addAgent($request);
     }
 
     public function updateAgentAccount(Agent $agent, AgencyRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->updateAgent($agent, $request);
+        return $this->agencyAdminService->updateAgentAccount($agent, $request);
     }
 }
