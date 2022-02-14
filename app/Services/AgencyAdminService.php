@@ -46,6 +46,6 @@ class AgencyAdminService
 
         $agent->syncRoles($request->safe()->role);
 
-        return response()->json(['message' => 'agent update', 'agent' => new AgentResource($agent)]);
+        return response()->json(['message' => 'agent updated', 'agent' => new AgentResource($agent)]);
     }
 }
