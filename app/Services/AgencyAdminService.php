@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\AgencyRegistrationRequest;
+use App\Http\Resources\AgentResource;
 use App\Http\Resources\AuthAgencyResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agent;
@@ -31,6 +32,10 @@ class AgencyAdminService
 
     public function updateAgentAccount(Agent $agent, AgencyRegistrationRequest $request): JsonResponse
     {
-        return $this->userAccountService->updateAgent($agent, $request);
+        $agent->update($request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']));
+
+        $agent->syncRoles($request->safe()->role);
+
+        return response()->json(['message' => 'agent update', 'agent' => new AgentResource($agent)]);
     }
 }
