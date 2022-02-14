@@ -15,6 +15,10 @@ class CreateUserAccountCommentsTable extends Migration
     {
         Schema::create('user_account_comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('status')->default('active');
+            $table->text('reason_for_blocking')->nullable();
+            $table->text('reason_for_unblocking')->nullable();
             $table->timestamps();
         });
     }
