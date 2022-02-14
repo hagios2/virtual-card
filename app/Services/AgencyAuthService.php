@@ -4,10 +4,8 @@ namespace App\Services;
 
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Resources\AdminResource;
 use App\Http\Resources\AuthAgencyResource;
-use App\Http\Resources\AuthUserResource;
-use App\Models\Agency;
+use App\Models\Agent;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
@@ -19,7 +17,7 @@ class AgencyAuthService extends AuthService
         return $this->guardLogin('agent');
     }
 
-    public function authUser(): AuthAgencyResource|AdminResource|JsonResponseAlias|AuthUserResource
+    public function authUser(): AuthAgencyResource
     {
         return $this->getAuthResource('agent');
     }
@@ -43,7 +41,7 @@ class AgencyAuthService extends AuthService
     {
         $request->validate(['email' => 'bail|required|email']);
 
-        $client = Agency::where('email', $request->email)->first();
+        $client = Agent::where('email', $request->email)->first();
 
         return $this->sendResetMail($client, 'agent');
     }
