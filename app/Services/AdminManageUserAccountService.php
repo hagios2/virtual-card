@@ -7,6 +7,7 @@ use App\Http\Resources\AuthUserResource;
 use App\Mail\AdminUserRegistrationMail;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -35,6 +36,8 @@ class AdminManageUserAccountService extends ManageAccountService
 
         $userData['password'] = bcrypt($password);
 
+        $userData['must_change_password'] = true;
+
         $user = User::create($userData);
 
         Mail::to($user)->queue(new AdminUserRegistrationMail($user, $password));
@@ -49,8 +52,10 @@ class AdminManageUserAccountService extends ManageAccountService
         return response()->json(['message' => 'user updated', 'user' => new AuthUserResource($user)]);
     }
 
-    public function blockUser(User $user): JsonResponse
+    public function blockUser(User $user, Request $request): JsonResponse
     {
+        $comment = $request->validate(['reason_for_comment' => 'bail|required|string']);
+
         return $this->blockAccount($user);
     }
 

@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRegistrationRequest;
-use App\Http\Resources\AgencyResource;
-use App\Http\Resources\AuthAgencyResource;
 use App\Http\Resources\DetailedAgencyResource;
 use App\Models\Agency;
 use App\Services\AdminManageAgencyAccountService;
@@ -17,7 +15,7 @@ class AgencyAccountController extends Controller
 {
     public function __construct(public AdminManageAgencyAccountService $agencyAccountService)
     {
-        $this->middleware(['auth:admin', 'role:super admin']);
+        $this->middleware(['auth:admin', 'role:super admin, role']);
     }
 
     public function registerAgency(AgencyRegistrationRequest $request): JsonResponse

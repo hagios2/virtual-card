@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone_number');
             $table->string('password');
             $table->boolean('is_active')->default(true);
-            $table->boolean('must_change_password')->default(false);
+            $table->boolean('must_change_password')->default(true);
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();

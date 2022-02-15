@@ -18,7 +18,8 @@ class AdminTableSeeder extends Seeder
             'name' => 'Emmanuel Oteng',
             'email' => 'hagioswilson@gmail.com',
             'password' => bcrypt('123456'),
-            'phone_number' => '233556684934'
+            'phone_number' => '233556684934',
+            'must_change_password' => false
         ]);
 
         $admin->assignRole('super admin');

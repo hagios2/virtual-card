@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->boolean('registered_by_admin');
             $table->timestamp('last_login')->nullable();
+            $table->boolean('must_change_password')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
