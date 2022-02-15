@@ -32,7 +32,7 @@ class AdminManageUserAccountService extends ManageAccountService
     {
         $password = Str::random(8);
 
-        $userData = $request->except('password');
+        $userData = $request->safe()->except('password');
 
         $userData['password'] = bcrypt($password);
 

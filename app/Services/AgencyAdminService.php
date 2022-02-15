@@ -16,7 +16,7 @@ class AgencyAdminService
 {
     public function addAgent(AgencyRegistrationRequest $request): JsonResponse
     {
-        $agentData = $request->except(['agency_name', 'service_type', 'registered_by_admin']);
+        $agentData = $request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']);
 
         $password = Str::random(8);
 
