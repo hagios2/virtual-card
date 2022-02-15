@@ -17,6 +17,8 @@ class UserAccountService
 
         $userData['password'] = bcrypt($request->safe()->password);
 
+        $userData['is_active'] = false;
+
         $user = User::create($userData);
 
         Mail::to($user)->queue(new UserRegistrationMail($user));
