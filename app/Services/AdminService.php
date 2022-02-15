@@ -16,7 +16,7 @@ class AdminService extends ManageAccountService
 {
     public function createAdmin(NewAdminRequest $request): JsonResponse
     {
-        $adminData = $request->except('role');
+        $adminData = $request->safe()->except('role');
 
         $password = Str::random(8);
 
@@ -43,7 +43,7 @@ class AdminService extends ManageAccountService
 
     public function updateAdmin(Admin $admin, NewAdminRequest $request): JsonResponse
     {
-        $admin->update($request->except('role'));
+        $admin->update($request->safe()->except('role'));
 
         $admin->syncRoles($request->safe()->role);
 
