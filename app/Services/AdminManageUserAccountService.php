@@ -54,13 +54,15 @@ class AdminManageUserAccountService extends ManageAccountService
 
     public function blockUser(User $user, Request $request): JsonResponse
     {
-        $comment = $request->validate(['reason_for_comment' => 'bail|required|string']);
+        $request->validate(['reason_for_blocking' => 'bail|required|string']);
 
         return $this->blockAccount($user);
     }
 
-    public function unBlockUser(User $user): JsonResponse
+    public function unBlockUser(User $user, Request $request): JsonResponse
     {
+        $request->validate(['reason_for_unblocking' => 'bail|required|string']);
+
         return $this->unBlockAccount($user);
     }
 }

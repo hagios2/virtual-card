@@ -8,6 +8,7 @@ use App\Http\Resources\AuthUserResource;
 use App\Models\User;
 use App\Services\AdminManageUserAccountService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JetBrains\PhpStorm\Pure;
 
@@ -38,13 +39,13 @@ class UserAccountController extends Controller
         return $this->userAccountService->updateUser($user, $request);
     }
 
-    public function blockUser(User $user): JsonResponse
+    public function blockUser(User $user, Request $request): JsonResponse
     {
-        return $this->userAccountService->blockUser($user);
+        return $this->userAccountService->blockUser($user, $request);
     }
 
-    public function unBlockUser(User $user): JsonResponse
+    public function unBlockUser(User $user, Request $request): JsonResponse
     {
-        return $this->userAccountService->unBlockUser($user);
+        return $this->userAccountService->unBlockUser($user, $request);
     }
 }
