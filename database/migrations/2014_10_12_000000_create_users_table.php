@@ -38,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->boolean('registered_by_admin');
             $table->timestamp('last_login')->nullable();
             $table->boolean('must_change_password')->default(false);
+            $table->string('pii')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
