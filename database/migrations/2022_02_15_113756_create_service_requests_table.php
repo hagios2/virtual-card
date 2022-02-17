@@ -16,7 +16,9 @@ class CreateServiceRequestsTable extends Migration
         Schema::create('service_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('status')->default();
+            $table->string('status')->default('pending'); //pending, rejected, approved
+            $table->foreignId('agency_id')->constrained('agencies');
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }
