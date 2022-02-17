@@ -15,12 +15,15 @@ class CreatePaymentTransactionsTable extends Migration
     {
         Schema::create('payment_transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_id');
-            $table->string('status');
-            $table->string('currency')->default('GHC');
-            $table->decimal('grand_total', 10, 2);
-            $table->integer('paid_product_id');
-            $table->string('txRef');
+            $table->integer('invoice_id')->nullable();
+            $table->string('status')->default('pending');
+            $table->string('currency')->default('GHS');
+            $table->decimal('amount', 10, 2);
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('reference')->unique();
+            $table->string('email');
+            $table->string('channel')->nullable(); //momo or card
+            $table->string('ip_address')->nullable(); //momo or card
             $table->timestamps();
         });
     }
