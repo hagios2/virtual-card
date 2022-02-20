@@ -53,7 +53,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
             DB::commit();
 
-            $response = response()->json(['message' => 'agency created', 'agency' => new AuthAgencyResource($agent)], 201);
+            $response = response()->json(['message' => 'agency created', 'agency' => new AgencyResource($agent)], 201);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
 
@@ -73,7 +73,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
         $agent->update($request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']));
 
-        return response()->json(['message' => 'agency updated', 'agency' => new AuthAgencyResource($agent)]);
+        return response()->json(['message' => 'agency updated', 'agency' => new AgencyResource($agent)]);
     }
 
     public function blockAgency(Agency $agency): JsonResponse
