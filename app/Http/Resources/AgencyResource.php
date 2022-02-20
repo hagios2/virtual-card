@@ -12,13 +12,13 @@ class AgencyResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|\JsonSerializable|\Illuminate\Contracts\Support\Arrayable
     {
         return [
             'id' => $this->id,
             'agency_name' => $this->agency_name,
             'service_type' => $this->service_type,
-            'agent' => new AgentResource($this->agent->first())
+            'agent' => new AgentResource($this->agent?->first())
         ];
     }
 }
