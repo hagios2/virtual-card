@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AgencyResource extends JsonResource
@@ -10,9 +11,9 @@ class AgencyResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array|Arrayable|\JsonSerializable
      */
-    public function toArray($request): array|\JsonSerializable|\Illuminate\Contracts\Support\Arrayable
+    public function toArray($request): array|\JsonSerializable|Arrayable
     {
         return [
             'id' => $this->id,
