@@ -18,7 +18,7 @@ class AgencyResource extends JsonResource
             'id' => $this->id,
             'agency_name' => $this->agency_name,
             'service_type' => $this->service_type,
-            'agent' => AgentResource::collection($this->agent)
+            'agent' => new AgentResource($this->agent->first())
         ];
     }
 }
