@@ -67,7 +67,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
     public function updateAgency(Agency $agency, AgencyRegistrationRequest $request): JsonResponse
     {
-        $agency->update($request->safe()->except(['agency_name', 'service_type']));
+        $agency->update($request->safe()->only(['agency_name', 'service_type']));
 
         $agent = $agency->agent->first();
 
