@@ -17,7 +17,8 @@ class AgencyResource extends JsonResource
         return [
             'id' => $this->id,
             'agency_name' => $this->agency_name,
-            'service_type' => $this->service_type
+            'service_type' => $this->service_type,
+            'agent' => AgentResource::collection($this->agent)
         ];
     }
 }
