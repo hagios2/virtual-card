@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\User\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +37,15 @@ Route::prefix('auth')->group(function (){
 
     Route::post('reset/password', [AuthController::class, 'resetPassword']);
 });
+
+#------------------------------------------- Service and Subscription Routes ---------------
+
+Route::get('fetch/agencies', [SubscriptionController::class, 'fetchAgencies']);
+
+Route::post('/service/subscribe', [SubscriptionController::class, 'subscribeForService']);
+
+Route::post('request/service', [SubscriptionController::class, 'serviceRequest']);
+
+#------------------------------------------- End  ------------------------------------------
+
+Route::post('payment/callback', [PaymentController::class, 'paymentCallback']);
