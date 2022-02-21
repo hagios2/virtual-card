@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\PaymentCharge;
 use App\Models\PaymentTransaction;
 use GuzzleHttp\Client;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Psr\Http\Message\ResponseInterface;
 
 class PaymentService
 {
@@ -18,7 +17,7 @@ class PaymentService
         $this->client = new Client(['base_uri' => 'https://api.paystack.co/transaction/']);
     }
 
-    public function initiatePayment($paymentData): string
+    public function initiatePayment($paymentData)
     {
         $headers = [
             'Authorization' => 'Bearer token',
@@ -27,7 +26,7 @@ class PaymentService
 
         $paymentData['currency'] = 'GHS';
         $paymentData['callback_url'] = '';
-        $paymentData['reference'] = 'ESs-'. Str::random(10);
+        $paymentData['reference'] = 'EService-'. Str::random(10);
         $paymentData['channels'] = ['card', 'mobile money'];
 
         $response = $this->client->request('POST', 'initialize', [
@@ -35,10 +34,12 @@ class PaymentService
             'headers' => $headers
         ]);
 
-        return $response->getBody()->getContents();
+        PaymentTransaction::create($paymentData);
+
+        return json_decode($response->getBody()->getContents());
     }
 
-    public function callback(Request $request)
+    public function callback(Request $request): JsonResponse
     {
         $headers = ['Authorization' => 'Bearer token'];
 
@@ -48,15 +49,19 @@ class PaymentService
 
         $responseBody = json_decode($responseData->getBody()->getContents());
 
-//        if ($responseBody->data['status'] === 'success') {
-            PaymentTransaction::query()
-                ->where('reference', $request->data['reference'])
-                ->update([
-                    'channel' => $responseBody->data['channel'],
-                    'status' => $responseBody->data['status'],
-                    'ip_address' => $responseBody->data['ip_address'],
-                ]);
-//        }
+        PaymentTransaction::query()
+            ->where('reference', $request->data['reference'])
+            ->update([
+                'channel' => $responseBody->data['channel'],
+                'status' => $responseBody->data['status'],
+                'ip_address' => $responseBody->data['ip_address'],
+            ]);
+
+        if ($responseBody->data['status'] === 'success') {
+
+        }
+
+        return response()->json(['message' => 'received']);
     }
 
 }

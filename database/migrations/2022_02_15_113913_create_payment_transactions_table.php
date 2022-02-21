@@ -21,9 +21,11 @@ class CreatePaymentTransactionsTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->foreignId('user_id')->constrained('users');
             $table->string('reference')->unique();
+            $table->string('callback_url')->unique();
             $table->string('email');
             $table->string('channel')->nullable(); //momo or card
             $table->string('ip_address')->nullable(); //momo or card
+            $table->json('metadata');
             $table->timestamps();
         });
     }

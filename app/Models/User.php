@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -72,5 +73,25 @@ class User extends Authenticatable implements JWTSubject
     public function addAccountComment($comment): Model|BelongsTo
     {
         return $this->accountsComment()->create($comment);
+    }
+
+    public function subscription(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function addSubscription($subscription): Model
+    {
+        return $this->subscription()->create($subscription);
+    }
+
+    public function serviceRequest(): HasMany
+    {
+        return $this->hasMany(ServiceRequest::class);
+    }
+
+    public function requestForService($request): Model
+    {
+        return $this->subscription()->create($request);
     }
 }
