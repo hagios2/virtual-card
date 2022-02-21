@@ -11,4 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentTransaction extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function scopeUserTransactions($query)
+    {
+        $query->where('user_id', auth()->id());
+    }
 }

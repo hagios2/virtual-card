@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Subscription;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('agency_id')->nullable()->constrained('agen');
-            $table->string('status');
+            $table->string('status')->default(Subscription::PENDING_STATUS);
             $table->string('type'); //standard / private
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

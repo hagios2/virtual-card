@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\Http\Resources\TransactionResources;
 use App\Models\PaymentTransaction;
+use App\Models\Subscription;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Str;
 
 class PaymentService
@@ -49,19 +53,44 @@ class PaymentService
 
         $responseBody = json_decode($responseData->getBody()->getContents());
 
-        PaymentTransaction::query()
+        $paymentTransaction = PaymentTransaction::query()
             ->where('reference', $request->data['reference'])
-            ->update([
+            ->first();
+
+            $paymentTransaction?->update([
                 'channel' => $responseBody->data['channel'],
                 'status' => $responseBody->data['status'],
                 'ip_address' => $responseBody->data['ip_address'],
             ]);
 
         if ($responseBody->data['status'] === 'success') {
+            $subscription = Subscription::find($paymentTransaction?->metadata['subscription_id']);
 
+            $subscription?->update([
+                'active' => Subscription::PAID_STATUS,
+                'paid_at' => now()
+            ]);
         }
 
         return response()->json(['message' => 'received']);
     }
 
+    public function userViewTransactions(): AnonymousResourceCollection
+    {
+        $transactions = $this->fetchTransactions()
+            ->userTransactions()->get();
+
+        return TransactionResources::collection($transactions);
+    }
+
+    public function adminViewTransactions(): AnonymousResourceCollection
+    {
+        return TransactionResources::collection($this->fetchTransactions()->get());
+    }
+
+    public function fetchTransactions(): Builder
+    {
+        return PaymentTransaction::query()
+            ->latest();
+    }
 }
