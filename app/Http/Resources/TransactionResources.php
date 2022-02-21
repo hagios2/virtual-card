@@ -24,7 +24,7 @@ class TransactionResources extends JsonResource
             'channel' => $this->channel,
             'ip_address' => $this->ip_address,
             'reference' => $this->reference,
-            ''
+            'metadata' => $this->metadata
         ];
     }
 }
