@@ -27,7 +27,7 @@ class UserAccountController extends Controller
         return $this->userAccountService->updateUser($user, $request);
     }
 
-    public function verifyEmail(EmailVerificationRequest $request): JsonResponse
+    public function verifyEmail(EmailVerificationRequest $request)
     {
         return $this->userAccountService->verifyEmail($request);
     }

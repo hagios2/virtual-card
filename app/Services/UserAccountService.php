@@ -38,9 +38,10 @@ class UserAccountService
         return response()->json(['message' => 'account updated']);
     }
 
-    public function verifyEmail(EmailVerificationRequest $request): JsonResponse
+    public function verifyEmail(EmailVerificationRequest $request)
     {
        $data = $request->validated();
+       return ['data' => $data];
        if (Hash::check($data['email'], $data['token'])) {
            User::query()
                ->where('email', $data['email'])
