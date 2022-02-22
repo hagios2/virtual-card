@@ -13,7 +13,7 @@ class UserAccountController extends Controller
 {
     public function __construct(protected UserAccountService $userAccountService)
     {
-        $this->middleware('auth:api')->only('updateAccount');
+        $this->middleware('auth:api')->only(['updateAccount', 'resendVerificationLink']);
     }
 
     public function registerUser(UserRegistrationRequest $request): JsonResponse
