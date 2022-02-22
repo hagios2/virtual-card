@@ -24,7 +24,7 @@ class PaymentService
     public function initiatePayment($paymentData)
     {
         $headers = [
-            'Authorization' => 'Bearer token',
+            'Authorization' => 'Bearer '.env('PAYSTACK_SEC_KEY'),
             'Content-Type' => 'application/json'
         ];
 
@@ -45,7 +45,7 @@ class PaymentService
 
     public function callback(Request $request): JsonResponse
     {
-        $headers = ['Authorization' => 'Bearer token'];
+        $headers = ['Authorization' => 'Bearer '.env('PAYSTACK_SEC_KEY')];
 
         $responseData = $this->client->request('POST', "verify/${$request->data['reference']}", [
             'headers' => $headers
