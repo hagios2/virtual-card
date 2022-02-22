@@ -65,9 +65,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function accountsComment(): BelongsTo
+    public function accountsComment(): HasMany
     {
-        return $this->belongsTo(UserAccountComment::class);
+        return $this->hasMany(UserAccountComment::class);
     }
 
     public function addAccountComment($comment): Model|BelongsTo
