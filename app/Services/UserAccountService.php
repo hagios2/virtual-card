@@ -45,7 +45,7 @@ class UserAccountService
        if (Hash::check($data['email'], $data['token'])) {
            User::query()
                ->where('email', $data['email'])
-               ->update(['verified_at' => now()]);
+               ->update(['email_verified_at' => now()]);
 
            return response()->json(['message' => 'email verified']);
        }
