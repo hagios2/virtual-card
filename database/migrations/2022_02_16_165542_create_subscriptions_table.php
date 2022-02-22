@@ -17,7 +17,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('agency_id')->nullable()->constrained('agency');
+            $table->foreignId('agency_id')->nullable()->constrained('agencies');
             $table->string('status')->default(Subscription::PENDING_STATUS);
             $table->string('type'); //standard / private
             $table->timestamp('paid_at')->nullable();

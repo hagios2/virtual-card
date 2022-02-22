@@ -42,20 +42,22 @@ Route::prefix('auth')->group(function (){
     Route::post('resend/verification/link', [UserAccountController::class, 'resendVerificationLink']);
 });
 
-#------------------------------------------- Service and Subscription Routes ---------------
+Route::middleware('verified')->group(function () {
 
-Route::get('fetch/agencies', [SubscriptionController::class, 'fetchAgencies']);
+    #------------------------------------------- Service and Subscription Routes ---------------
+    Route::get('fetch/agencies', [SubscriptionController::class, 'fetchAgencies']);
 
-Route::post('/service/subscribe', [SubscriptionController::class, 'subscribeForService']);
+    Route::post('/service/subscribe', [SubscriptionController::class, 'subscribeForService']);
 
-Route::post('request/service', [SubscriptionController::class, 'serviceRequest']);
+    Route::post('request/service', [SubscriptionController::class, 'serviceRequest']);
+    #------------------------------------------- End  ------------------------------------------
 
-#------------------------------------------- End  ------------------------------------------
+    #------------------------------------------- Transactions ------------------------------------
 
-#------------------------------------------- Transactions ------------------------------------
+    Route::get('fetch/transactions', [PaymentController::class, 'viewTransactions']);
 
-Route::get('fetch/transactions', [PaymentController::class, 'viewTransactions']);
+    #------------------------------------------- Transactions ------------------------------------
+});
 
+#------------------------------------------- Payment Callback ------------------------------------
 Route::post('payment/callback', [PaymentController::class, 'paymentCallback']);
-
-#------------------------------------------- Transactions ------------------------------------
