@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 class EmailVerificationRequest extends FormRequest
 {
@@ -11,9 +12,9 @@ class EmailVerificationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +22,11 @@ class EmailVerificationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    #[ArrayShape(["email" => "string", 'token' => "string"])] public function rules(): array
     {
         return [
-            //
+            "email" => "bail|required|email|string",
+            'token' => 'bail|required|string'
         ];
     }
 }
