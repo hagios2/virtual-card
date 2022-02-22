@@ -41,7 +41,7 @@ class UserAccountService
     public function verifyEmail(EmailVerificationRequest $request)
     {
        $data = $request->validated();
-       return ['data' => $data];
+//       return ['data' => $data];
        if (Hash::check($data['email'], $data['token'])) {
            User::query()
                ->where('email', $data['email'])
