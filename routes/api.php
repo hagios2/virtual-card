@@ -48,4 +48,10 @@ Route::post('request/service', [SubscriptionController::class, 'serviceRequest']
 
 #------------------------------------------- End  ------------------------------------------
 
+#------------------------------------------- Transactions ------------------------------------
+
+Route::get('fetch/transactions', [PaymentController::class, 'viewTransactions']);
+
 Route::post('payment/callback', [PaymentController::class, 'paymentCallback']);
+
+#------------------------------------------- Transactions ------------------------------------

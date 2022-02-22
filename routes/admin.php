@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgencyAccountController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UserAccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
@@ -67,3 +68,7 @@ Route::patch('activate/{agency}/agency-account', [AgencyAccountController::class
 #---------------------------- End Super Admin Routes --------------------------------------------------------------
 
 
+#------------------------------------------- Transactions ------------------------------------
+
+Route::get('fetch/transactions', [PaymentController::class, 'viewTransactions']);
+#------------------------------------------- Transactions ------------------------------------
