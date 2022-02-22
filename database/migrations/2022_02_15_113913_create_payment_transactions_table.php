@@ -24,8 +24,8 @@ class CreatePaymentTransactionsTable extends Migration
             $table->string('callback_url')->unique();
             $table->string('email');
             $table->string('channel')->nullable(); //momo or card
-            $table->string('ip_address')->nullable(); //momo or card
-            $table->json('metadata');
+            $table->string('ip_address')->nullable();
+            $table->json('metadata')->nullable();
             $table->timestamps();
         });
     }
