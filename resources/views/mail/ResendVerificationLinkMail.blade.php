@@ -1,5 +1,5 @@
 @component('mail::message')
-# Congrats {{$user?->name}}
+# Hello {{$user?->name}}
 
 <p>
     You are one click away to finish setting up your account.<br>
@@ -7,9 +7,10 @@
 </p>
 
 @component('mail::button', ['url' => "?email={$user?->email}&token={$verificationToken}])
-Verify Account
+    Verify Account
 @endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
+

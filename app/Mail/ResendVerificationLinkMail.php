@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegistrationMail extends Mailable implements ShouldQueue
+class ResendVerificationLinkMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -26,9 +26,9 @@ class UserRegistrationMail extends Mailable implements ShouldQueue
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
-        return $this->markdown('mail.UserRegistrationMail')
-            ->subject('New Signup');
+        return $this->markdown('ResendVerificationLinkMail')
+            ->subject('Email Verification');
     }
 }

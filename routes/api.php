@@ -36,6 +36,8 @@ Route::prefix('auth')->group(function (){
     Route::post('send/password-reset/request', [AuthController::class, 'sendResetMail']);
 
     Route::post('reset/password', [AuthController::class, 'resetPassword']);
+
+    Route::post('verify/email', [AuthController::class, 'verifyEmail']);
 });
 
 #------------------------------------------- Service and Subscription Routes ---------------
