@@ -24,7 +24,7 @@ class UserAccountService
 
         $user = User::create($userData);
 
-        $verificationToken = Hash::make($user->email);
+        $verificationToken = Hash::make("$user->email");
 
         Mail::to($user)->queue(new UserRegistrationMail($user, $verificationToken));
 

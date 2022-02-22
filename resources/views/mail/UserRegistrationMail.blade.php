@@ -10,6 +10,12 @@
 Verify Account
 @endcomponent
 
+<p>
+    Or you can and paste the link in your browser to verify account <br>
+
+    <a href="https://eservice-backend.herokuapp.com/?email={{$user?->email}}&token={{$verificationToken}}"></a>
+</p>
+
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
