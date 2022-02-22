@@ -24,7 +24,7 @@ class UserAccountService
 
         $user = User::create($userData);
 
-        $verificationToken = bcrypt($user->email);
+        $verificationToken = Hash::make($user->email);
 
         Mail::to($user)->queue(new UserRegistrationMail($user, $verificationToken));
 
@@ -53,7 +53,7 @@ class UserAccountService
 
     public function resendVerificationLink(): JsonResponse
     {
-        $verificationToken = bcrypt(auth()->user()->email);
+        $verificationToken = Hash::make(auth()->user()->email);
 
         $user = User::find(auth()->id());
 
