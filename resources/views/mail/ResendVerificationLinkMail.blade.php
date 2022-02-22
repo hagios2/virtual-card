@@ -6,7 +6,7 @@
     Kindly click on the button below to verify your account. <br>
 </p>
 
-@component('mail::button', ['url' => "?email={$user?->email}&token={$verificationToken}])
+@component('mail::button', ['url' => "?email={$user?->email}&token={$verificationToken}"])
     Verify Account
 @endcomponent
 

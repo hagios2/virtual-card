@@ -6,7 +6,7 @@
     Kindly click on the button below to verify your account. <br>
 </p>
 
-@component('mail::button', ['url' => "https://eservice-backend.herokuapp.com/?email={$user?->email}&token={$verificationToken}])
+@component('mail::button', ['url' => "https://eservice-backend.herokuapp.com/?email={$user?->email}&token={$verificationToken}"])
 Verify Account
 @endcomponent
 
