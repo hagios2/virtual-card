@@ -28,7 +28,7 @@ class ResendVerificationLinkMail extends Mailable implements ShouldQueue
      */
     public function build(): static
     {
-        return $this->markdown('ResendVerificationLinkMail')
+        return $this->markdown('mail.ResendVerificationLinkMail')
             ->subject('Email Verification');
     }
 }
