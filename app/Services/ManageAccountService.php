@@ -36,8 +36,8 @@ class ManageAccountService
     public function storeComment($account, $comment, $commentField) {
         if ($account instanceof User) {
             $previousActiveComment = $account->accountsComment
-                    ->where([['status', 'active'], [$commentField, null]])
-                    ->latest()->first();
+                    ?->where([['status', 'active'], [$commentField, null]])
+                    ?->latest()->first();
             if ($previousActiveComment) {
                 $previousActiveComment->update([$commentField => $comment, 'status' => 'closed']);
             } else {
