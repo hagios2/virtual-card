@@ -64,7 +64,10 @@ class PaymentService
             ]);
 
         if ($responseBody->data['status'] === 'success') {
-            $subscription = Subscription::find($paymentTransaction?->metadata['subscription_id']);
+
+            $subscriptionId = json_decode($paymentTransaction?->metadata, true)['subscription_id'];
+
+            $subscription = Subscription::find($subscriptionId);
 
             $subscription?->update([
                 'active' => Subscription::PAID_STATUS,

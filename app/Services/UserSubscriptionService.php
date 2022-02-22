@@ -32,7 +32,7 @@ class UserSubscriptionService
         $paymentData = [
             'amount' => ServiceCharge::activeCharge($request->safe()->type),
             'email' => auth()->user()->email,
-            'metadata' => ['subscription_id' => $subscription->id]
+            'metadata' => json_encode(['subscription_id' => $subscription->id])
         ];
 
        return $this->paymentService->initiatePayment($paymentData);
