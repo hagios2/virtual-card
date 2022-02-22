@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\UserAccountComment;
 use Illuminate\Http\JsonResponse;
 
 class ManageAccountService
@@ -35,9 +36,9 @@ class ManageAccountService
 
     public function storeComment($account, $comment, $commentField) {
         if ($account instanceof User) {
-            $previousActiveComment = $account->accountsComment
-                    ?->where([['status', 'active'], [$commentField, null]])
-                    ?->latest()->first();
+            $previousActiveComment = UserAccountComment::query()
+                    ->where([['status', 'active'], [$commentField, null], ['user_id', $account->id]])
+                    ->latest()->first();
             if ($previousActiveComment) {
                 $previousActiveComment->update([$commentField => $comment, 'status' => 'closed']);
             } else {
