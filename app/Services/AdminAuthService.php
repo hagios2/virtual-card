@@ -3,23 +3,40 @@
 namespace App\Services;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Resources\AdminResource;
+use App\Http\Resources\AuthAdminResource;
+use App\Interfaces\LoginInterface;
 use App\Models\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
 
-class AdminAuthService extends AuthService
+class AdminAuthService extends AuthService implements LoginInterface
 {
-    public function login(): JsonResponseAlias
+    public function guardLogin(LoginRequest $request, string $guard = 'api'): JsonResponse
     {
-        return $this->guardLogin('admin');
+        $credentials = $request->validated();
+        $credentials['is_active'] = true;
+
+        if (! $token = auth()->guard($guard)->attempt($credentials)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+        $tokenResponse = $this->respondWithToken($token, $guard);
+
+        $tokenResponse['user'] = $this->getAuthResource($guard);
+
+        return response()->json($tokenResponse);
     }
 
-    public function authUser(): AdminResource
+    public function authUser(): AuthAdminResource
     {
         return $this->getAuthResource('admin');
+    }
+
+    public function getAuthResource(string $guard = 'api'): AuthAdminResource
+    {
+        return new AuthAdminResource(auth()->guard($guard)->user());
     }
 
     public function logout(): JsonResponseAlias

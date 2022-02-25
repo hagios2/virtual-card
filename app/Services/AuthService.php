@@ -4,9 +4,6 @@ namespace App\Services;
 
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Resources\AdminResource;
-use App\Http\Resources\AuthAgentResource;
-use App\Http\Resources\AuthUserResource;
 use App\Interfaces\AuthServiceInterface;
 use App\Mail\AdminPasswordRequestMail;
 use App\Mail\AgencyPasswordRequestMail;
@@ -21,36 +18,10 @@ use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\ArrayShape;
 
 class AuthService implements AuthServiceInterface
 {
-    public function guardLogin(string $guard = 'api'): JsonResponseAlias
-    {
-        $credentials = request(['email', 'password']);
-        $credentials['is_active'] = true;
-
-        if (! $token = auth()->guard($guard)->attempt($credentials)) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
-        }
-        $tokenResponse = $this->respondWithToken($token, $guard);
-
-        $tokenResponse['user'] = $this->getAuthResource($guard);
-
-        auth()->guard($guard)->user()->update(['last_login' => now()]);
-
-        $this->checkAndVerifyUser($guard);
-
-        return response()->json($tokenResponse);
-    }
-
-    # this will automatically verify users registered by admin the first time they log in
-    public function checkAndVerifyUser(string $guard)
-    {
-        if ($guard === 'api' && auth()->user()->registered_by_admin && !auth()->user()->email_verified_at) {
-            auth()->guard($guard)->user()->update(['email_verified_at' => now()]);
-        }
-    }
-
     public function guardLogout(string $guard = 'api'): JsonResponseAlias
     {
         auth()->guard($guard)->logout();
@@ -63,21 +34,12 @@ class AuthService implements AuthServiceInterface
         return response()->json($this->respondWithToken(auth()->guard($guard)->refresh(), $guard));
     }
 
-    public function respondWithToken($token, string $guard): array
+    #[ArrayShape(['access_token' => "", 'token_type' => "string"])] public function respondWithToken($token, string $guard): array
     {
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
         ];
-    }
-
-    public function getAuthResource(string $guard = 'api'): AuthAgentResource|AdminResource|AuthUserResource
-    {
-        return match ($guard) {
-            'api' => new AuthUserResource(auth()->user()),
-            'admin' => new AdminResource(auth()->guard($guard)->user()),
-            'agent' => new AuthAgentResource(auth()->guard($guard)->user())
-        };
     }
 
     public function changeUserPassword(ChangePasswordRequest $request, string $guard = 'api'): JsonResponse
