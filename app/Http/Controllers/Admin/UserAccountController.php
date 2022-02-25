@@ -16,7 +16,7 @@ class UserAccountController extends Controller
 {
     public function __construct(public AdminManageUserAccountService $userAccountService)
     {
-        $this->middleware(['auth:admin', 'role:super admin,admin,data entry user']);
+        $this->middleware(['auth:admin', 'role:super_admin|admin|data_entry_user']);
     }
 
     public function registerUser(UserRegistrationRequest $request): JsonResponse
