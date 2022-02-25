@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AuthAgentResource;
 use App\Services\AgencyAuthService;
@@ -17,9 +18,9 @@ class AuthController extends Controller
         $this->middleware('auth:agency', ['except' => ['login', 'sendResetMail', 'resetPassword']]);
     }
 
-    public function login(): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        return $this->agencyAuthService->login();
+        return $this->agencyAuthService->guardLogin($request);
     }
 
     public function authUser(): AuthAgentResource

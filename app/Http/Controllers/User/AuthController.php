@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AuthUserResource;
 use App\Services\UserAuthService;
@@ -17,9 +18,9 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
-    public function login(): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        return $this->userAuthService->login();
+        return $this->userAuthService->guardLogin($request);
     }
 
     public function authUser(): AuthUserResource
