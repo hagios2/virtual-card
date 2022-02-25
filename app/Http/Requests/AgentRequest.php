@@ -26,8 +26,8 @@ class AgentRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|string',
-            'email' => ['bail', 'required', 'string', Rule::unique('agents')->ignore($this->route()->parameter('agency')?->agent?->first())],
-            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agents')->ignore($this->route()->parameter('agency')?->agent?->first())],
+            'email' => ['bail', 'required', 'string', Rule::unique('agents')->ignore($this->route()->parameter('agent'))],
+            'phone_number' => ['bail', 'required', 'digits:10', Rule::unique('agents')->ignore($this->route()->parameter('agent'))],
             'role' => 'bail|required|string'
         ];
     }
