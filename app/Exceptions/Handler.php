@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (UnauthorizedException $e, $request) {
             return response()->json([
-                'responseMessage' => 'You do not have the required authorization.',
+                'message' => 'You do not have the required authorization.',
             ], 403);
         });
     }
