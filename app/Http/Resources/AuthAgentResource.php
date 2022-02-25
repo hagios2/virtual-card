@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AuthAgencyResource extends JsonResource
+class AuthAgentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

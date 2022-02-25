@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
-use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\AuthAgentResource;
 use App\Http\Resources\AuthUserResource;
 use App\Interfaces\AuthServiceInterface;
 use App\Mail\AdminPasswordRequestMail;
@@ -71,12 +71,12 @@ class AuthService implements AuthServiceInterface
         ];
     }
 
-    public function getAuthResource(string $guard = 'api'): AuthAgencyResource|AdminResource|AuthUserResource
+    public function getAuthResource(string $guard = 'api'): AuthAgentResource|AdminResource|AuthUserResource
     {
         return match ($guard) {
             'api' => new AuthUserResource(auth()->user()),
             'admin' => new AdminResource(auth()->guard($guard)->user()),
-            'agent' => new AuthAgencyResource(auth()->guard($guard)->user())
+            'agent' => new AuthAgentResource(auth()->guard($guard)->user())
         };
     }
 

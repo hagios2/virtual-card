@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
-use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\AuthAgentResource;
 use App\Http\Resources\AuthUserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +19,7 @@ class UserAuthService extends AuthService
         return $this->guardLogin();
     }
 
-    public function authUser(): AuthAgencyResource|AdminResource|JsonResponseAlias|AuthUserResource
+    public function authUser(): AuthAgentResource|AdminResource|JsonResponseAlias|AuthUserResource
     {
         return $this->getAuthResource();
     }

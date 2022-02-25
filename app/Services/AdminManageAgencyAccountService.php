@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\AgencyResource;
-use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\AuthAgentResource;
 use App\Http\Resources\DetailedAgencyResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agency;
@@ -37,9 +37,9 @@ class AdminManageAgencyAccountService extends ManageAccountService
         DB::beginTransaction();
 
         try {
-            $agency = Agency::create($request->safe()->only(['agency_name', 'service_type']));
+            $agency = Agency::create($request->safe()->only(['agency_name', 'service_type', 'branch', 'agency_location']));
 
-            $agentData = $request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']);
+            $agentData = $request->safe()->except(['name', 'email', 'phone_number']);
 
             $password = Str::random(8);
 

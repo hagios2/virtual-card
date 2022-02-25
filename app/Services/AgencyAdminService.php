@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\AgentRequest;
 use App\Http\Resources\AgentResource;
-use App\Http\Resources\AuthAgencyResource;
+use App\Http\Resources\AuthAgentResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agent;
 use Illuminate\Http\JsonResponse;
@@ -28,7 +28,7 @@ class AgencyAdminService
 
         Mail::to($agent)->queue(new AgencyRegistrationMail($agent, $password));
 
-        return response()->json(['message' => 'agent created', 'agent' => new AuthAgencyResource($agent)], 201);
+        return response()->json(['message' => 'agent created', 'agent' => new AuthAgentResource($agent)], 201);
     }
 
     public function fetchAgents(): AnonymousResourceCollection
