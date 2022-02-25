@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
-        return $this->adminAuthService->guardLogin($request);
+        return $this->adminAuthService->guardLogin($request, 'admin');
     }
 
     public function authUser(): AuthAdminResource

@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
-        return $this->agencyAuthService->guardLogin($request);
+        return $this->agencyAuthService->guardLogin($request, 'agent');
     }
 
     public function authUser(): AuthAgentResource
