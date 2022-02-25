@@ -39,7 +39,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
         try {
             $agency = Agency::create($request->safe()->only(['agency_name', 'service_type', 'branch', 'agency_location']));
 
-            $agentData = $request->safe()->except(['name', 'email', 'phone_number']);
+            $agentData = $request->safe()->only(['name', 'email', 'phone_number']);
 
             $password = Str::random(8);
 
@@ -67,11 +67,11 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
     public function updateAgency(Agency $agency, AgencyRegistrationRequest $request): JsonResponse
     {
-        $agency->update($request->safe()->only(['agency_name', 'service_type']));
+        $agency->update($request->safe()->only(['agency_name', 'service_type', 'branch', 'agency_location']));
 
         $agent = $agency->agent->first();
 
-        $agent->update($request->safe()->except(['agency_name', 'service_type', 'registered_by_admin']));
+        $agent->update($request->safe()->only(['name', 'email', 'phone_number']));
 
         return response()->json(['message' => 'agency updated', 'agency' => new AgencyResource($agency)]);
     }
