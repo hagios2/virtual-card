@@ -22,6 +22,6 @@ class AdminTableSeeder extends Seeder
             'must_change_password' => false
         ]);
 
-        $admin->assignRole('super_admin');
+        $admin->assignRole('super admin');
     }
 }

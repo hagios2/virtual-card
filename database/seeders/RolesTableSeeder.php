@@ -14,7 +14,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $adminRoles = ['supervisor', 'data_entry_user', 'admin', 'super_admin'];
+        $adminRoles = ['supervisor', 'data entry user', 'admin', 'super admin'];
         $agentRoles = ['admin', 'user'];
 
         foreach ($adminRoles as $role) {
