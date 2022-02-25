@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AgencyRegistrationRequest;
+use App\Http\Requests\AgentRequest;
 use App\Models\Agent;
 use App\Services\AgencyAdminService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 
 class AgencyAccountController extends Controller
@@ -16,17 +17,17 @@ class AgencyAccountController extends Controller
         $this->middleware(['auth:agent', 'role:admin']);
     }
 
-    public function addAgent(AgencyRegistrationRequest $request): JsonResponse
+    public function addAgent(AgentRequest $request): JsonResponse
     {
         return $this->agencyAdminService->addAgent($request);
     }
 
-    public function fetchAgents()
+    public function fetchAgents(): AnonymousResourceCollection
     {
         return $this->agencyAdminService->fetchAgents();
     }
 
-    public function updateAgentAccount(Agent $agent, AgencyRegistrationRequest $request): JsonResponse
+    public function updateAgentAccount(Agent $agent, AgentRequest $request): JsonResponse
     {
         return $this->agencyAdminService->updateAgentAccount($agent, $request);
     }
