@@ -9,7 +9,6 @@ use App\Http\Resources\AuthAdminResource;
 use App\Interfaces\LoginInterface;
 use App\Models\Admin;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
 
 class AdminAuthService extends AuthService implements LoginInterface
@@ -39,12 +38,12 @@ class AdminAuthService extends AuthService implements LoginInterface
         return new AuthAdminResource(auth()->guard($guard)->user());
     }
 
-    public function logout(): JsonResponseAlias
+    public function logout(): JsonResponse
     {
         return $this->guardLogout('admin');
     }
 
-    public function refresh(): JsonResponseAlias
+    public function refresh(): JsonResponse
     {
         return $this->guardRefresh('admin');
     }

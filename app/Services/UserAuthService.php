@@ -16,7 +16,7 @@ class UserAuthService extends AuthService implements LoginInterface
 {
     public function guardLogin(LoginRequest $request, string $guard = 'api'): JsonResponse
     {
-        $credentials = request(['email', 'password']);
+        $credentials = $request->validated();
         $credentials['is_active'] = true;
 
         if (! $token = auth()->guard($guard)->attempt($credentials)) {
