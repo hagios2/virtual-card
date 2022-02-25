@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Resources\AdminResource;
+use App\Http\Resources\AuthAdminResource;
 use App\Services\AdminAuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,12 +19,12 @@ class AuthController extends Controller
         $this->middleware('auth:admin', ['except' => ['login', 'sendResetMail', 'reset']]);
     }
 
-    public function login(): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        return $this->adminAuthService->login();
+        return $this->adminAuthService->guardLogin($request);
     }
 
-    public function authUser(): AdminResource
+    public function authUser(): AuthAdminResource
     {
         return $this->adminAuthService->authUser();
     }
