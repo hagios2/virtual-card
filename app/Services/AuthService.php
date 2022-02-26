@@ -103,7 +103,7 @@ class AuthService implements AuthServiceInterface
             $client = match ($account_type) {
                 'admin' => Admin::where('email', $passwordReset->email)->first(),
                 'user' => User::where('email', $passwordReset->email)->first(),
-                'agency' => Agency::where('email', $passwordReset->email)->first()
+                'agent' => Agency::where('email', $passwordReset->email)->first()
             };
 
             $client->update(['password' => Hash::make($resetData['password'])]);
