@@ -25,7 +25,7 @@ class AgencyAuthService extends AuthService implements LoginInterface
 
         $tokenResponse['user'] = $this->getAuthResource($guard);
 
-        $this->VerifyAndUpdateUserFields();
+        auth()->guard($guard)->user()->update(['last_login' => now()]);
 
         return response()->json($tokenResponse);
     }
@@ -38,20 +38,6 @@ class AgencyAuthService extends AuthService implements LoginInterface
     public function getAuthResource(string $guard = 'api'): AuthAgentResource
     {
         return new AuthAgentResource(auth()->guard($guard)->user());
-    }
-
-    # this will automatically verify users registered by admin
-    # the first time they log in and also update last login field
-    public function VerifyAndUpdateUserFields()
-    {
-        if (auth()->user()->registered_by_admin && !auth()->user()->email_verified_at) {
-            auth()->user()->update([
-                'email_verified_at' => now(),
-                'last_login' => now()
-            ]);
-        } else {
-            auth()->user()->update(['last_login' => now()]);
-        }
     }
 
     public function logout(): JsonResponse
