@@ -65,6 +65,10 @@ Route::patch('deactivate/{agency}/agency-account', [AgencyAccountController::cla
 
 Route::patch('activate/{agency}/agency-account', [AgencyAccountController::class, 'unBlockAgency']);
 
+Route::patch('deactivate/{agent}/agent-account', [AgencyAccountController::class, 'blockAgent']);
+
+Route::patch('activate/{agent}/agent-account', [AgencyAccountController::class, 'unBlockAgent']);
+
 #---------------------------- End Super Admin Routes --------------------------------------------------------------
 
 

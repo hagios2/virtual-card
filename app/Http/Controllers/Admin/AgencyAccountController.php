@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\DetailedAgencyResource;
 use App\Models\Agency;
+use App\Models\Agent;
 use App\Services\AdminManageAgencyAccountService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -46,5 +47,15 @@ class AgencyAccountController extends Controller
     public function unBlockAgency(Agency $Agency): JsonResponse
     {
         return $this->agencyAccountService->unBlockAgency($Agency);
+    }
+
+    public function blockAgent(Agent $Agent): JsonResponse
+    {
+        return $this->agencyAccountService->blockAgent($Agent);
+    }
+
+    public function unBlockAgent(Agent $Agent): JsonResponse
+    {
+        return $this->agencyAccountService->unBlockAgent($Agent);
     }
 }

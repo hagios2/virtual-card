@@ -8,6 +8,7 @@ use App\Http\Resources\AuthAgentResource;
 use App\Http\Resources\DetailedAgencyResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agency;
+use App\Models\Agent;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -84,5 +85,15 @@ class AdminManageAgencyAccountService extends ManageAccountService
     public function unBlockAgency(Agency $agency): JsonResponse
     {
         return $this->unBlockAccount($agency);
+    }
+
+    public function blockAgent(Agent $agent): JsonResponse
+    {
+        return $this->blockAccount($agent);
+    }
+
+    public function unBlockAgent(Agent $agent): JsonResponse
+    {
+        return $this->unBlockAccount($agent);
     }
 }

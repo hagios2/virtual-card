@@ -12,7 +12,7 @@ class ServiceCharge extends Model
 
     protected $guarded = ['id'];
 
-    public static function activeCharge($type): Model|Builder|null
+    public static function activeCharge($type): Model|null
     {
         return self::query()
             ->where('type', $type)
