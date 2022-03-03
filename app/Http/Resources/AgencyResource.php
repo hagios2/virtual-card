@@ -20,6 +20,7 @@ class AgencyResource extends JsonResource
             'agency_name' => $this->agency_name,
             'service_type' => $this->service_type,
             'agent' => new AgentResource($this->agent?->first()),
+            'is_active' => $this->is_active,
             'agency_location' => $this->agency_location,
             'branch' => $this->branch
         ];
