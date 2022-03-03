@@ -25,7 +25,7 @@ class UserServiceRequest extends FormRequest
     #[ArrayShape(['agency_id' => "string", 'reason' => "string"])] public function rules(): array
     {
         return [
-            'agency_id' => 'bail|required|integer|exists:App\Model\Agency,id',
+            'agency_id' => 'bail|required|integer|exists:App\Models\Agency,id',
             'reason' => 'bail|required|string'
         ];
     }
