@@ -19,7 +19,9 @@ class DetailedAgencyResource extends JsonResource
             'id' => $this->id,
             'agency_name' => $this->agency_name,
             'service_type' => $this->service_type,
-            'agents' => AgentResource::collection($this->agent)
+            'agents' => AgentResource::collection($this->agent),
+            'agency_location' => $this->agency_location,
+            'branch' => $this->branch
         ];
     }
 }
