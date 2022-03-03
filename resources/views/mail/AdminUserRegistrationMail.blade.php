@@ -5,12 +5,17 @@
     You have been added to CHERT WORKSPACE.<br>
     Kindly use the credentials below to login. <br>
     Email: <b>{{$user?->email}} </b> <br>
-    Password: <b> {{ $password }} </b>
+    Password: <b> {{ $password }} </b> <br>
 </p>
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => 'https://admin.respondergh.com/login'])
     Login
 @endcomponent
+<p>
+    or click on the link below to login <br>
+
+    <a href="https://admin.respondergh.com/login">Login</a>
+</p>
 
 Thanks,<br>
 {{ config('app.name') }}
