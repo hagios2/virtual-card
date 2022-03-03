@@ -31,4 +31,14 @@ class AgencyAccountController extends Controller
     {
         return $this->agencyAdminService->updateAgentAccount($agent, $request);
     }
+
+    public function blockAgent(Agent $Agent): JsonResponse
+    {
+        return $this->agencyAdminService->blockAgent($Agent);
+    }
+
+    public function unBlockAgent(Agent $Agent): JsonResponse
+    {
+        return $this->agencyAdminService->unBlockAgent($Agent);
+    }
 }

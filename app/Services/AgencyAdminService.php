@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class AgencyAdminService
+class AgencyAdminService extends ManageAccountService
 {
     public function addAgent(AgentRequest $request): JsonResponse
     {
@@ -47,5 +47,15 @@ class AgencyAdminService
         $agent->syncRoles($request->safe()->role);
 
         return response()->json(['message' => 'agent updated', 'agent' => new AgentResource($agent)]);
+    }
+
+    public function blockAgent(Agent $agent): JsonResponse
+    {
+        return $this->blockAccount($agent);
+    }
+
+    public function unBlockAgent(Agent $agent): JsonResponse
+    {
+        return $this->unBlockAccount($agent);
     }
 }

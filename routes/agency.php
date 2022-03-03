@@ -27,6 +27,10 @@ Route::post('add/an-agent', [AgencyAccountController::class, 'addAgent']);
 
 Route::put('update/{agent}/agent/account', [AgencyAccountController::class, 'updateAgentAccount']);
 
+Route::patch('deactivate/{agent}/agent-account', [AgencyAccountController::class, 'blockAgent']);
+
+Route::patch('activate/{agent}/agent-account', [AgencyAccountController::class, 'unBlockAgent']);
+
 Route::get('agents/fetch', [AgencyAccountController::class, 'fetchAgents']);
 
 
