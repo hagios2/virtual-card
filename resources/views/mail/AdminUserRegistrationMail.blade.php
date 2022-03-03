@@ -14,7 +14,7 @@
 <p>
     or click on the link below to login <br>
 
-    <a href="https://admin.respondergh.com/login">Login</a>
+    <a href="https://admin.respondergh.com/login" target="_blank">Login</a>
 </p>
 
 Thanks,<br>

@@ -16,7 +16,7 @@
         or you may copy and paste the link below in your browser to reset your password
     </p>
 
-    <a href="{{env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"}}" target="_blank">{{env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"}}</a>
+    <a href="https://admin.respondergh.com?token={{$passwordReset->token}}" target="_blank">https://admin.respondergh.com?token={{$passwordReset->token}}</a>
 </section>
 
 <section>
