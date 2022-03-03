@@ -20,6 +20,7 @@ class UserSubscriptionService
     public function fetchAgencies(): AnonymousResourceCollection
     {
         $agencies = Agency::query()
+            ->where('is_active', true)
             ->latest()->get();
 
         return ServicesResource::collection($agencies);
