@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Http\Requests\AgencyRegistrationRequest;
 use App\Http\Resources\AgencyResource;
-use App\Http\Resources\AuthAgentResource;
 use App\Http\Resources\DetailedAgencyResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agency;
@@ -13,6 +12,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -44,7 +44,7 @@ class AdminManageAgencyAccountService extends ManageAccountService
 
             $password = Str::random(8);
 
-            $agentData['password'] = bcrypt($password);
+            $agentData['password'] = Hash::make($password);
 
             $agent = $agency->addAgent($agentData);
 
