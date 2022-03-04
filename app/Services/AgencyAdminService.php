@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\Pure;
 
 class AgencyAdminService extends ManageAccountService
 {
@@ -38,6 +39,11 @@ class AgencyAdminService extends ManageAccountService
             ->latest()->get();
 
         return AgentResource::collection($agents);
+    }
+
+    #[Pure] public function fetchAnAgent(Agent $agent): AgentResource
+    {
+        return new AgentResource($agent);
     }
 
     public function updateAgentAccount(Agent $agent, AgentRequest $request): JsonResponse

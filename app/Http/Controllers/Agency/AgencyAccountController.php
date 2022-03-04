@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgentRequest;
+use App\Http\Resources\AgentResource;
 use App\Models\Agent;
 use App\Services\AgencyAdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use JetBrains\PhpStorm\Pure;
 
 
 class AgencyAccountController extends Controller
@@ -25,6 +27,11 @@ class AgencyAccountController extends Controller
     public function fetchAgents(): AnonymousResourceCollection
     {
         return $this->agencyAdminService->fetchAgents();
+    }
+
+    #[Pure] public function fetchAnAgent(Agent $agent): AgentResource
+    {
+        return $this->agencyAdminService->fetchAnAgent($agent);
     }
 
     public function updateAgentAccount(Agent $agent, AgentRequest $request): JsonResponse
