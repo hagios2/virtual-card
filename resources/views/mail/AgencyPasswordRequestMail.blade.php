@@ -12,11 +12,11 @@
 @endcomponent
 
 <section>
-    <p>
-        or you may copy and paste the link below in your browser to reset your password
-    </p>
+<p>
+    or you may copy and paste the link below in your browser to reset your password
+</p>
 
-    <a href="https://agency.respondergh.com?token={{$passwordReset->token}}" target="_blank">{{env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"}}</a>
+<a href="https://agency.respondergh.com/reset-password?token={{$passwordReset->token}}" target="_blank">https://agency.respondergh.com/reset-password?token={$passwordReset->token}"}}</a>
 </section>
 
 <section>
