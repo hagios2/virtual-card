@@ -29,9 +29,9 @@ class PaymentService
         ];
 
         $paymentData['currency'] = 'GHS';
-        $paymentData['callback_url'] = '';
+        $paymentData['callback_url'] = route('payment.callback');
         $paymentData['reference'] = 'EService-'. Str::random(10);
-        $paymentData['channels'] = ['card', 'mobile money'];
+        $paymentData['channels'] = ['card', 'mobile_money'];
 
         $response = $this->client->request('POST', 'initialize', [
             'json' => $paymentData,

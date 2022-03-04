@@ -60,4 +60,4 @@ Route::middleware('verified')->group(function () {
 });
 
 #------------------------------------------- Payment Callback ------------------------------------
-Route::post('payment/callback', [PaymentController::class, 'paymentCallback']);
+Route::post('payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback');
