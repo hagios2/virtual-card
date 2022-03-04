@@ -18,7 +18,7 @@ class UserAccountService
     {
         $userData = $request->safe()->except('password');
 
-        $userData['password'] = bcrypt($request->safe()->password);
+        $userData['password'] = Hash::make($request->safe()->password);
 
         $userData['is_active'] = false;
 
