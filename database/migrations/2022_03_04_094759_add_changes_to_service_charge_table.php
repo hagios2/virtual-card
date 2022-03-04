@@ -27,10 +27,14 @@ class AddChangesToServiceChargeTable extends Migration
      */
     public function down()
     {
-        Schema::table('service_charges', function (Blueprint $table) {
-            $table->decimal('private_security_fee', 10, 2);
-            $table->renameColumn('amount', 'standard_subscription_fee');
-            $table->dropColumn('type');
-        });
+        \App\Models\ServiceCharge::create([
+            'amount' => 500,
+            'type' => 'standard'
+        ]);
+//        Schema::table('service_charges', function (Blueprint $table) {
+//            $table->decimal('private_security_fee', 10, 2);
+//            $table->renameColumn('amount', 'standard_subscription_fee');
+//            $table->dropColumn('type');
+//        });
     }
 }
