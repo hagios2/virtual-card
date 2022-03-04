@@ -18,4 +18,6 @@ class ServiceCharge extends Model
             ->where('type', $type)
             ->latest()->first();
     }
+
+
 }
