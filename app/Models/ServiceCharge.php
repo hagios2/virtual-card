@@ -19,7 +19,7 @@ class ServiceCharge extends Model
     {
         return self::query()
             ->where('type', $type)
-            ->latest()->first();
+            ->latest()->first('amount');
     }
 
 
