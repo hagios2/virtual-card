@@ -29,7 +29,7 @@ Route::get('fetch/{agent}/agent', [AgencyAccountController::class, 'fetchAnAgent
 
 Route::put('update/{agent}/agent/account', [AgencyAccountController::class, 'updateAgentAccount']);
 
-Route::put('update/agency/details', [AgencyAccountController::class, 'updateAgency']);
+Route::put('update/details', [AgencyAccountController::class, 'updateAgency']);
 
 Route::patch('deactivate/{agent}/agent-account', [AgencyAccountController::class, 'blockAgent']);
 
