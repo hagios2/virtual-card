@@ -30,8 +30,6 @@ class UserSubscriptionService
     {
         $subscription = auth()->user()->addSubscription($request->validated());
 
-//        return response()->json(['amount' => ServiceCharge::activeCharge($request->safe()->type)->amount]);
-
         $paymentData = [
             'amount' => ServiceCharge::activeCharge($request->safe()->type)->amount,
             'email' => auth()->user()->email,

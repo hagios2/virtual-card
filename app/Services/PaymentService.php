@@ -38,6 +38,8 @@ class PaymentService
             'headers' => $headers
         ]);
 
+        $paymentData['user_id'] = auth()->id();
+
         PaymentTransaction::create($paymentData);
 
         return json_decode($response->getBody()->getContents());
