@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgentRequest;
+use App\Http\Requests\UpdateAgencyRequest;
 use App\Http\Resources\AgentResource;
 use App\Models\Agent;
 use App\Services\AgencyAdminService;
@@ -47,5 +48,10 @@ class AgencyAccountController extends Controller
     public function unBlockAgent(Agent $Agent): JsonResponse
     {
         return $this->agencyAdminService->unBlockAgent($Agent);
+    }
+
+    public function updateAgency(UpdateAgencyRequest $request): JsonResponse
+    {
+        return $this->agencyAdminService->updateAgency($request);
     }
 }

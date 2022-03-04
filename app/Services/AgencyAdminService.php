@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Http\Requests\AgentRequest;
+use App\Http\Requests\UpdateAgencyRequest;
 use App\Http\Resources\AgentResource;
+use App\Http\Resources\AuthAgentAgencyResource;
 use App\Http\Resources\AuthAgentResource;
 use App\Mail\AgencyRegistrationMail;
 use App\Models\Agent;
@@ -63,5 +65,14 @@ class AgencyAdminService extends ManageAccountService
     public function unBlockAgent(Agent $agent): JsonResponse
     {
         return $this->unBlockAccount($agent);
+    }
+
+    public function updateAgency(UpdateAgencyRequest $request): JsonResponse
+    {
+        $agency = auth()->guard('agent')->user()->agency;
+
+        $agency->update($request->validated());
+
+        return response()->json(['message' => 'agency updated', 'agency' => new AuthAgentAgencyResource($agency)]);
     }
 }
