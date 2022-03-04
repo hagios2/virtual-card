@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Agency\AdminController;
 use App\Http\Controllers\Agency\AgencyAccountController;
 use App\Http\Controllers\Agency\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -23,18 +24,26 @@ Route::prefix('auth')->group(function (){
     Route::post('reset/password', [AuthController::class, 'resetPassword']);
 });
 
-Route::post('add/an-agent', [AgencyAccountController::class, 'addAgent']);
+#-------------------------------- Admin Routes -----------------------------------------------
+
+Route::post('add/an-agent', [AdminController::class, 'addAgent']);
+
+Route::get('agents/fetch', [AdminController::class, 'fetchAgents']);
+
+Route::put('update/details', [AdminController::class, 'updateAgency']);
+
+Route::patch('deactivate/{agent}/agent-account', [AdminController::class, 'blockAgent']);
+
+Route::patch('activate/{agent}/agent-account', [AdminController::class, 'unBlockAgent']);
+
+#------------------------------------- Admin Routes -----------------------------------------------
 
 Route::get('fetch/{agent}/agent', [AgencyAccountController::class, 'fetchAnAgent']);
 
 Route::put('update/{agent}/agent/account', [AgencyAccountController::class, 'updateAgentAccount']);
 
-Route::put('update/details', [AgencyAccountController::class, 'updateAgency']);
 
-Route::patch('deactivate/{agent}/agent-account', [AgencyAccountController::class, 'blockAgent']);
 
-Route::patch('activate/{agent}/agent-account', [AgencyAccountController::class, 'unBlockAgent']);
 
-Route::get('agents/fetch', [AgencyAccountController::class, 'fetchAgents']);
 
 
