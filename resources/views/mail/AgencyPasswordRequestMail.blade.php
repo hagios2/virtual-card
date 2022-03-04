@@ -16,7 +16,7 @@
     or you may copy and paste the link below in your browser to reset your password
 </p>
 
-<a href="https://agency.respondergh.com/reset-password?token={{$passwordReset->token}}" target="_blank">https://agency.respondergh.com/reset-password?token={$passwordReset->token}"}}</a>
+<a href="https://agency.respondergh.com/reset-password?token={{$passwordReset->token}}" target="_blank">https://agency.respondergh.com/reset-password?token={{$passwordReset->token}}</a>
 </section>
 
 <section>
