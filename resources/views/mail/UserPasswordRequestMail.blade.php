@@ -2,21 +2,21 @@
 # Hello {{$user->name}}
 
 <section>
-    <p>
-        You have requested to reset your password, kindly click on the button below to reset your password.
-    </p>
+<p>
+    You have requested to reset your password, kindly click on the button below to reset your password.
+</p>
 </section>
 
-@component('mail::button', ['url' => env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"])
+@component('mail::button', ['url' => "https://respondergh.com/reset-password?token={$passwordReset->token}"])
     Reset Password
 @endcomponent
 
 <section>
-    <p>
-        or you may copy and paste the link below in your browser to reset your password
-    </p>
+<p>
+    or you may copy and paste the link below in your browser to reset your password
+</p>
 
-    <a href="{{env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"}}" target="_blank">{{env('PASSWORD_RESET_URL')."?token={$passwordReset->token}"}}</a>
+<a href="https://respondergh.com/reset-password?token={{$passwordReset->token}}" target="_blank">https://respondergh.com/reset-password?token={{$passwordReset->token}}</a>
 </section>
 
 <section>
