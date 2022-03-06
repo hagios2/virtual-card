@@ -13,16 +13,16 @@ class AddChangesToServiceChargeTable extends Migration
      */
     public function up()
     {
-        Schema::table('service_charges', function (Blueprint $table) {
-            $table->dropColumn('private_security_fee');
+//        Schema::table('service_charges', function (Blueprint $table) {
+//            $table->dropColumn('private_security_fee');
 //            $table->renameColumn('standard_subscription_fee', 'amount');
-            $table->string('type');
-        });
-
-        \App\Models\ServiceCharge::create([
-            'amount' => 500,
-            'type' => 'standard'
-        ]);
+//            $table->string('type');
+//        });
+//
+//        \App\Models\ServiceCharge::create([
+//            'amount' => 500,
+//            'type' => 'standard'
+//        ]);
     }
 
     /**
