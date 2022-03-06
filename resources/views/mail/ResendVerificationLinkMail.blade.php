@@ -6,14 +6,14 @@
     Kindly click on the button below to verify your account. <br>
 </p>
 
-@component('mail::button', ['url' => "?email={$user?->email}&token={$verificationToken}"])
+@component('mail::button', ['url' => "https://respondergh.com/verify-email?email={$user?->email}&token={$verificationToken}"])
     Verify Account
 @endcomponent
 
 <p>
     Or you can and paste the link in your browser to verify account <br>
 
-<a href="https://eservice-backend.herokuapp.com/?email={{$user?->email}}&token={{$verificationToken}}">https://eservice-backend.herokuapp.com/?email={{$user?->email}}&token={{$verificationToken}}</a>
+<a href="https://respondergh.com/verify-email?email={{$user?->email}}&token={{$verificationToken}}">https://respondergh.com/verify-email?email={{$user?->email}}&token={{$verificationToken}}</a>
 </p>
 
 
