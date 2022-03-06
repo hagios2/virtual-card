@@ -15,7 +15,7 @@ class AddChangesToServiceChargeTable extends Migration
     {
         Schema::table('service_charges', function (Blueprint $table) {
             $table->dropColumn('private_security_fee');
-            $table->renameColumn('standard_subscription_fee', 'amount');
+//            $table->renameColumn('standard_subscription_fee', 'amount');
             $table->string('type');
         });
 
