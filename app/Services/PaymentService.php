@@ -77,7 +77,7 @@ class PaymentService
             ]);
         }
 
-        return response()->json(['message' => 'received']);
+        return response()->json(['message' => 'received', 'payment status' => $responseBody->data['status']]);
     }
 
     public function userViewTransactions(): AnonymousResourceCollection
