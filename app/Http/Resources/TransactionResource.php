@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class TransactionResources extends JsonResource
+class TransactionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

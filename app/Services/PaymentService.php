@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\TransactionResources;
+use App\Http\Resources\TransactionResource;
 use App\Models\PaymentTransaction;
 use App\Models\Subscription;
 use GuzzleHttp\Client;
@@ -87,12 +87,12 @@ class PaymentService
         $transactions = $this->fetchTransactions()
             ->userTransactions()->get();
 
-        return TransactionResources::collection($transactions);
+        return TransactionResource::collection($transactions);
     }
 
     public function adminViewTransactions(): AnonymousResourceCollection
     {
-        return TransactionResources::collection($this->fetchTransactions()->get());
+        return TransactionResource::collection($this->fetchTransactions()->get());
     }
 
     public function fetchTransactions(): Builder
