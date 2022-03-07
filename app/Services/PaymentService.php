@@ -51,7 +51,7 @@ class PaymentService
 
         $requestReference = $request->reference;
 
-        $responseData = $this->client->request('POST', "verify/{$requestReference}", [
+        $responseData = $this->client->request('GET', "verify/{$requestReference}", [
             'headers' => $headers
         ]);
 
