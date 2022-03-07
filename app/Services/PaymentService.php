@@ -49,14 +49,16 @@ class PaymentService
     {
         $headers = ['Authorization' => 'Bearer '.env('PAYSTACK_SEC_KEY')];
 
-        $responseData = $this->client->request('POST', "verify/${$request->data['reference']}", [
+        $requestReference = $request->reference;
+
+        $responseData = $this->client->request('POST', "verify/${$requestReference}", [
             'headers' => $headers
         ]);
 
         $responseBody = json_decode($responseData->getBody()->getContents());
 
         $paymentTransaction = PaymentTransaction::query()
-            ->where('reference', $request->data['reference'])
+            ->where('reference', $requestReference)
             ->first();
 
             $paymentTransaction?->update([
