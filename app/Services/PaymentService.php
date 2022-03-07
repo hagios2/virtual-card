@@ -29,7 +29,7 @@ class PaymentService
         ];
 
         $paymentData['currency'] = 'GHS';
-        $paymentData['callback_url'] = route('payment.callback');
+        $paymentData['callback_url'] = 'https://respondergh.com/payment/verification';
         $paymentData['reference'] = 'EService-'. Str::random(10);
         $paymentData['channels'] = ['card', 'mobile_money'];
 
