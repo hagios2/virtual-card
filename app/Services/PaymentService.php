@@ -62,12 +62,12 @@ class PaymentService
             ->first();
 
             $paymentTransaction?->update([
-                'channel' => $responseBody->data['channel'],
-                'status' => $responseBody->data['status'],
-                'ip_address' => $responseBody->data['ip_address'],
+                'channel' => $responseBody->data->channel,
+                'status' => $responseBody->data->status,
+                'ip_address' => $responseBody->data->ip_address,
             ]);
 
-        if ($responseBody->data['status'] === 'success') {
+        if ($responseBody->data->status === 'success') {
 
             $subscriptionId = json_decode($paymentTransaction?->metadata, true)['subscription_id'];
 
@@ -79,7 +79,7 @@ class PaymentService
             ]);
         }
 
-        return response()->json(['message' => 'received', 'payment status' => $responseBody->data['status']]);
+        return response()->json(['message' => 'received', 'payment status' => $responseBody->data->status]);
     }
 
     public function userViewTransactions(): AnonymousResourceCollection
