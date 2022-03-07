@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
@@ -24,7 +25,8 @@ class TransactionResource extends JsonResource
             'channel' => $this->channel,
             'ip_address' => $this->ip_address,
             'reference' => $this->reference,
-            'metadata' => $this->metadata
+            'metadata' => $this->metadata,
+            'created_at' => Carbon::parse($this->created_at)->format('D, d F Y')
         ];
     }
 }
