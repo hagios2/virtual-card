@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangePasswordRequest extends FormRequest
+class VirtualCardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -21,12 +21,14 @@ class ChangePasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'first_time' => 'bail|required|boolean',
-            'password' => 'bail|required_if:first_time,false|string',
-            'new_password' => 'bail|required|string'
+            'cardholder' => 'required|string',
+            'customer_name' => 'required|string',
+            'customer_email' => 'required|email|string',
+            'customer_phone' => 'required|digits:10',
+            'reference' => 'required|string',
         ];
     }
 }
