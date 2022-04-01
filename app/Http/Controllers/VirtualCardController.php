@@ -14,6 +14,6 @@ class VirtualCardController extends Controller
 
     public function paymentCallback(VirtualCardRequest $request): JsonResponse
     {
-        return $this->paymentService->initiatePayment($request);
+        return $this->paymentService->issueCard($request);
     }
 }

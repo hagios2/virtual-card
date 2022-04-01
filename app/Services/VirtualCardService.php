@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\VirtualCardRequest;
 use GuzzleHttp\Client;
+use Illuminate\Http\JsonResponse;
 
 
 class VirtualCardService
@@ -15,7 +16,7 @@ class VirtualCardService
         $this->client = new Client(['base_uri' => 'https://www.fxkudipay.com/developer/api/']);
     }
 
-    public function initiatePayment(VirtualCardRequest $request)
+    public function issueCard(VirtualCardRequest $request): JsonResponse
     {
         $data = $request->validated();
         $data['merchantid'] = 4;
